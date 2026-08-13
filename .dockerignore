@@ -1,0 +1,12 @@
+node_modules
+.next
+.git
+.serena
+.claude
+graphify-out
+*.md
+!README.md
+npm-debug.log*
+.DS_Store
+*.tsbuildinfo
+.env*

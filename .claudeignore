@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+
+# Next.js build output
+.next/
+out/
+
+# Generated/cache files
+*.tsbuildinfo
+next-env.d.ts
+
+# Lockfile (huge, machine-generated)
+package-lock.json
+
+# Knowledge graph tool output (generated, not source)
+graphify-out/
+
+# Serena MCP tool state
+.serena/
+
+# Local Claude Code settings
+.claude/
+
+# Misc
+.DS_Store
+*.pem
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.env*
+.vercel/

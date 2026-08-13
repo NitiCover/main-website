@@ -3,6 +3,7 @@ node_modules
 .git
 .serena
 .claude
+.claudeignore
 graphify-out
 *.md
 !README.md
@@ -10,3 +11,10 @@ npm-debug.log*
 .DS_Store
 *.tsbuildinfo
 .env*
+.vscode
+.idea
+coverage
+out
+Dockerfile
+docker-compose.yml
+.dockerignore

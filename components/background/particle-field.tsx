@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useRef } from "react";
+import { usePathname } from "next/navigation";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
@@ -109,6 +110,10 @@ function ParticleSwarm() {
 }
 
 export function ParticleField() {
+  const pathname = usePathname();
+
+  if (pathname === "/waitlist") return null;
+
   return (
     <div
       aria-hidden="true"

@@ -52,6 +52,15 @@ export function Cta() {
       <p className="mt-4 text-xs text-[#52627a]/70">
         contact@niticover.com · +91 98772 70734
       </p>
+      <p className="mt-6 text-sm text-[#52627a]">
+        Not ready yet?{" "}
+        <a
+          href="/waitlist"
+          className="font-medium text-[#0e2c54] underline underline-offset-4 hover:text-[#0e2c54]/80"
+        >
+          Join the waitlist
+        </a>
+      </p>
     </section>
   );
 }

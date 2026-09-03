@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -12,11 +13,14 @@ const links = [
   { href: "#how-different", label: "How We're Different" },
   { href: "#benefits", label: "Why Us" },
   { href: "#contact", label: "Contact" },
+  { href: "/waitlist", label: "Waitlist" },
 ];
 
 export function Navbar() {
   const { scrollY } = useScroll();
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === "/";
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setScrolled(latest > 20);
@@ -36,7 +40,7 @@ export function Navbar() {
         transition={{ duration: 0.25, ease: "easeOut" }}
         className="mx-auto flex max-w-6xl items-center justify-between px-6"
       >
-        <Link href="#hero" className="flex items-center gap-2">
+        <Link href={isHome ? "#hero" : "/"} className="flex items-center gap-2">
           <Image
             src="/niticover-cropped-logo.png"
             alt="NitiCover"
@@ -49,7 +53,11 @@ export function Navbar() {
           {links.map((link) => (
             <a
               key={link.href}
-              href={link.href}
+              href={
+                link.href.startsWith("#") && !isHome
+                  ? `/${link.href}`
+                  : link.href
+              }
               className="text-sm font-medium text-[#0e2c54]/80 transition-colors hover:text-[#0e2c54]"
             >
               {link.label}
@@ -60,7 +68,7 @@ export function Navbar() {
           size="lg"
           nativeButton={false}
           className="bg-[#0e2c54] text-white hover:bg-[#0e2c54]/85"
-          render={<a href="#contact">Get a Quote</a>}
+          render={<a href={isHome ? "#contact" : "/#contact"}>Get a Quote</a>}
         />
       </motion.div>
     </header>

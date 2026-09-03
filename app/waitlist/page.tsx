@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Navbar } from "@/components/sections/navbar";
 import { Footer } from "@/components/sections/footer";
 import { InView } from "@/components/motion-primitives/in-view";
-import { AirtableEmbed } from "@/components/waitlist/airtable-embed";
+import { AirtableSlot } from "@/components/waitlist/airtable-preload";
 
 export const metadata: Metadata = {
   title: "Join the Waitlist — NitiCover",
@@ -13,9 +13,6 @@ export const metadata: Metadata = {
 export default function WaitlistPage() {
   return (
     <div className="flex flex-1 flex-col">
-      <link rel="preconnect" href="https://airtable.com" />
-      <link rel="preconnect" href="https://static.airtable.com" crossOrigin="" />
-      <link rel="dns-prefetch" href="https://airtable.com" />
       <Navbar />
       <section className="mx-auto w-full max-w-3xl px-6 text-center">
         <InView
@@ -26,9 +23,7 @@ export default function WaitlistPage() {
           }}
           transition={{ duration: 0.4, ease: "easeOut" }}
         >
-          <div className="overflow-hidden rounded-xl border border-black/10 bg-white shadow-sm">
-            <AirtableEmbed />
-          </div>
+          <AirtableSlot />
         </InView>
       </section>
       <Footer />

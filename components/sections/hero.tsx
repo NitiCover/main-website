@@ -20,7 +20,7 @@ export function Hero() {
                 without the busywork.
               </span>
             </h1>
-            <p className="mx-auto mt-6 max-w-xl text-base text-[#52627a] md:text-lg">
+            <p className="mx-auto px-5 sm:px-0 mt-6 max-w-xl text-base text-[#52627a] md:text-lg">
               NitiCover is an automated insurance brokerage that gets startups
               and tech companies covered — fast, unbiased, and fully
               transparent, from first message to signed policy.

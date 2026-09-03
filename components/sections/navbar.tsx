@@ -13,7 +13,7 @@ const links = [
   { href: "#how-different", label: "How We're Different" },
   { href: "#benefits", label: "Why Us" },
   { href: "#contact", label: "Contact" },
-  { href: "/waitlist", label: "Waitlist" },
+  // { href: "/waitlist", label: "Waitlist" },
 ];
 
 export function Navbar() {
@@ -68,7 +68,7 @@ export function Navbar() {
           size="lg"
           nativeButton={false}
           className="bg-[#0e2c54] text-white hover:bg-[#0e2c54]/85"
-          render={<a href={isHome ? "#contact" : "/#contact"}>Get a Quote</a>}
+          render={<a href="/waitlist">Join the waitlist</a>}
         />
       </motion.div>
     </header>

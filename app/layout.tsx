@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ParticleField } from "@/components/background/particle-field";
+import { AirtableSlotProvider } from "@/components/waitlist/airtable-preload";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -28,7 +29,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full flex flex-col">
         <ParticleField />
         <div className="relative z-10 flex min-h-full flex-1 flex-col">
-          {children}
+          <AirtableSlotProvider>{children}</AirtableSlotProvider>
         </div>
       </body>
     </html>

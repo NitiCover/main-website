@@ -12,7 +12,10 @@ export function WhatWeDo() {
   });
 
   return (
-    <section id="what-we-do" className="mx-auto max-w-4xl px-6 py-16 text-center">
+    <section
+      id="what-we-do"
+      className="mx-auto max-w-4xl px-6 py-16 text-center w-screen bg-white/70"
+    >
       <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#3087d0]">
         What NitiCover does
       </p>
@@ -31,8 +34,8 @@ export function WhatWeDo() {
         NitiCover is an automated insurance brokerage built for startups and
         other tech-driven companies. Tell us what you need to cover — cyber,
         D&amp;O, GMC, or anything else — and we take it from there: comparing
-        the market, negotiating terms, and getting your policy issued,
-        without the back-and-forth that usually comes with buying insurance.
+        the market, negotiating terms, and getting your policy issued, without
+        the back-and-forth that usually comes with buying insurance.
       </p>
     </section>
   );

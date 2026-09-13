@@ -3,18 +3,32 @@
 import { CircleCheckBig, CircleX } from "lucide-react";
 import { InView } from "@/components/motion-primitives/in-view";
 
-const traditional = [
-  "Weeks to a month or two for a single quote",
-  "One fairly standardized offer, take it or leave it",
-  "Business-hours availability only",
-  "Opaque process — you rarely see how the quote was built",
-];
-
-const niticover = [
-  "Quotes from 20+ insurers gathered in about a week",
-  "Choose from the best 4–5 offers, not just one",
-  "24/7 support over call, WhatsApp, and email",
-  "Fully digital and transparent, for you and the insurer",
+const comparisons = [
+  {
+    category: "Placement Speed",
+    traditional: "2–4 week turnaround delays stalled by manual sequential workflows and human email handoffs",
+    niticover: "<48 hours quote-to-bind powered by autonomous AI underwriting with zero handoff latency",
+  },
+  {
+    category: "Policy Recommendation",
+    traditional: "Commission and relationship bias favoring broker margins or partner quotas",
+    niticover: "100% unbiased risk profiling matched strictly to your actual company exposure",
+  },
+  {
+    category: "Audit & Compliance",
+    traditional: "Zero audit trail with negotiations scattered across untracked WhatsApp chats and emails",
+    niticover: "100% digitized, 10-year IRDAI-compliant audit trail with every clause and quote timestamped",
+  },
+  {
+    category: "Transparency & Trust",
+    traditional: "Opaque 'black box' proposals forcing founders to hire outside consultants to avoid overpaying",
+    niticover: "Transparent clause-by-clause breakdown with licensed broker and insurer sign-off on every case",
+  },
+  {
+    category: "Availability & Accuracy",
+    traditional: "Business-hours availability only with high error rates from manual data entry",
+    niticover: "24/7 AI-native workflow with 70% reduction in manual processing errors",
+  },
 ];
 
 export function HowDifferent() {
@@ -31,10 +45,11 @@ export function HowDifferent() {
         </div>
 
         <div className="mt-12 grid gap-6 md:grid-cols-2">
+          {/* Traditional Brokers Card */}
           <InView
             viewOptions={{ once: true, margin: "0px 0px -100px 0px" }}
             variants={{
-              hidden: { opacity: 0, x: -40 },
+              hidden: { opacity: 0, x: -30 },
               visible: { opacity: 1, x: 0 },
             }}
             transition={{ duration: 0.5, ease: "easeOut" }}
@@ -43,20 +58,24 @@ export function HowDifferent() {
             <h3 className="text-lg font-semibold text-[#52627a]">
               Traditional brokers
             </h3>
-            <ul className="mt-6 space-y-4">
-              {traditional.map((item) => (
-                <li key={item} className="flex items-start gap-3 text-[#52627a]">
+            <ul className="mt-6 space-y-5">
+              {comparisons.map((item) => (
+                <li key={item.category} className="flex items-start gap-3.5 text-[#52627a]">
                   <CircleX className="mt-0.5 h-5 w-5 shrink-0 text-[#c4785d]" />
-                  <span>{item}</span>
+                  <div className="text-sm leading-relaxed sm:text-base">
+                    <span className="font-semibold text-slate-700">{item.category}: </span>
+                    {item.traditional}
+                  </div>
                 </li>
               ))}
             </ul>
           </InView>
 
+          {/* NitiCover Card */}
           <InView
             viewOptions={{ once: true, margin: "0px 0px -100px 0px" }}
             variants={{
-              hidden: { opacity: 0, x: 40 },
+              hidden: { opacity: 0, x: 30 },
               visible: { opacity: 1, x: 0 },
             }}
             transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
@@ -65,11 +84,14 @@ export function HowDifferent() {
             <h3 className="text-lg font-semibold text-[#0e2c54]">
               NitiCover
             </h3>
-            <ul className="mt-6 space-y-4">
-              {niticover.map((item) => (
-                <li key={item} className="flex items-start gap-3 text-[#0e2c54]">
+            <ul className="mt-6 space-y-5">
+              {comparisons.map((item) => (
+                <li key={item.category} className="flex items-start gap-3.5 text-[#0e2c54]">
                   <CircleCheckBig className="mt-0.5 h-5 w-5 shrink-0 text-[#3087d0]" />
-                  <span>{item}</span>
+                  <div className="text-sm leading-relaxed sm:text-base">
+                    <span className="font-semibold text-[#0e2c54]">{item.category}: </span>
+                    {item.niticover}
+                  </div>
                 </li>
               ))}
             </ul>
@@ -79,3 +101,4 @@ export function HowDifferent() {
     </section>
   );
 }
+

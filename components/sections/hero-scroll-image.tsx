@@ -7,13 +7,13 @@ export function HeroScrollImage() {
   const frameRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: frameRef,
-    offset: ["start end", "end start"],
+    offset: ["start 0.15", "end start"],
   });
 
   // Smoothly pan through the chat messages while the header and footer stay pinned
   const panY = useTransform(
     scrollYProgress,
-    [0, 0.2, 0.9],
+    [0, 0.1, 0.85],
     ["0%", "0%", "-78%"]
   );
 

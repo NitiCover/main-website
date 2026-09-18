@@ -1,96 +1,73 @@
 "use client";
 import React, { useRef } from "react";
-import { useScroll, useTransform, motion, MotionValue } from "framer-motion";
 
 export const ContainerScroll = ({
   titleComponent,
   children,
+  className,
 }: {
-  titleComponent: string | React.ReactNode;
+  titleComponent?: React.ReactNode;
   children: React.ReactNode;
+  className?: string;
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-  });
-  const [isMobile, setIsMobile] = React.useState(false);
-
-  React.useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => {
-      window.removeEventListener("resize", checkMobile);
-    };
-  }, []);
-
-  const scaleDimensions = () => {
-    return isMobile ? [0.7, 0.9] : [1.05, 1.1];
-  };
-
-  const rotate = useTransform(scrollYProgress, [0, 1], [20, 0]);
-  const scale = useTransform(scrollYProgress, [0, 1], scaleDimensions());
-  const translate = useTransform(scrollYProgress, [0, 1], [0, -100]);
 
   return (
     <div
-      className="h-[60rem] md:h-[70rem] w-auto flex items-center justify-center relative"
+      className={`relative w-full ${className || ""}`}
       ref={containerRef}
     >
-      <div
-        className="w-full relative"
-        style={{
-          perspective: "1000px",
-        }}
-      >
-        <Header translate={translate} titleComponent={titleComponent} />
-        <Card rotate={rotate} translate={translate} scale={scale}>
-          {children}
-        </Card>
+      <div className="relative w-full">
+        {titleComponent ? (
+          <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-8">
+            <div className="w-full lg:col-span-7">{titleComponent}</div>
+            <div className="flex w-full justify-center lg:col-span-5">
+              <Card>{children}</Card>
+            </div>
+          </div>
+        ) : (
+          <Card>{children}</Card>
+        )}
       </div>
     </div>
   );
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const Header = ({ translate, titleComponent }: any) => {
-  return (
-    <motion.div
-      style={{
-        translateY: translate,
-      }}
-      className="max-w-5xl mx-auto text-center"
-    >
-      {titleComponent}
-    </motion.div>
-  );
+export const Header = ({
+  titleComponent,
+}: {
+  titleComponent: React.ReactNode;
+}) => {
+  return <div className="w-full text-left">{titleComponent}</div>;
 };
 
 export const Card = ({
-  rotate,
-  scale,
   children,
 }: {
-  rotate: MotionValue<number>;
-  scale: MotionValue<number>;
-  translate: MotionValue<number>;
   children: React.ReactNode;
 }) => {
   return (
-    <motion.div
+    <div
       style={{
-        rotateX: rotate,
-        scale,
         boxShadow:
-          "0 0 #0000004d, 0 9px 20px #0000004a, 0 37px 37px #00000042, 0 44px 50px #00000026, 0 50px 35px #0000000a, 0 50px 35px #00000003",
+          "0 0 #0000004d, 0 12px 30px #0e2c542a, 0 35px 50px #0e2c5422, 0 50px 70px #0e2c5415, inset 0 1px 1px rgba(255,255,255,0.4)",
       }}
-      className="md:max-w-md mx-auto aspect-[15/26] w-full border-1 border-[#FFFFFF] p-4 md:p-6 bg-[#000000] rounded-[30px] shadow-lg"
+      className="relative mx-auto w-full max-w-[320px] sm:max-w-[360px] md:max-w-[380px] aspect-[9/19] rounded-[48px] border-[10px] border-[#10141d] bg-[#10141d] p-0 shadow-2xl ring-1 ring-white/15"
     >
-      <div className=" h-full w-fit overflow-hidden rounded-2xl bg-gray-100 dark:bg-zinc-900 md:rounded-2xl ">
+      {/* Authentic iPhone Dynamic Island */}
+      <div className="pointer-events-none absolute top-3.5 left-1/2 z-40 flex h-6 w-24 -translate-x-1/2 items-center justify-between rounded-full bg-black px-2.5 shadow-md">
+        {/* Front camera lens reflection */}
+        <div className="flex items-center gap-1.5">
+          <span className="size-2.5 rounded-full bg-[#121624] ring-1 ring-[#1f293d]/50" />
+        </div>
+        {/* Sensor dot */}
+        <span className="size-2.5 rounded-full bg-[#0a0f1d] ring-1 ring-[#1e2738]/40" />
+      </div>
+
+      {/* Screen container */}
+      <div className="h-full w-full overflow-hidden rounded-[38px] bg-[#e7ddd3] shadow-inner">
         {children}
       </div>
-    </motion.div>
+    </div>
   );
 };

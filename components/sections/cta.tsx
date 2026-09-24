@@ -3,8 +3,11 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-
-const MotionLink = motion(Link);
+import {
+  DEMO_HREF,
+  SITE_EMAIL,
+  SITE_PHONE_DISPLAY,
+} from "@/lib/site-content";
 
 function ShineOverlay() {
   return (
@@ -23,11 +26,11 @@ export function Cta() {
       className="mx-auto w-screen px-6 py-24 text-center bg-white/70"
     >
       <h2 className="text-3xl font-semibold text-[#0e2c54] md:text-4xl">
-        Ready to get covered?
+        See a placement run on NitiCover.
       </h2>
       <p className="mx-auto mt-4 max-w-xl text-lg text-[#52627a]">
-        Tell us what your business needs, and we&apos;ll bring back the best
-        offers from the market — usually within a week.
+        A 30-minute walkthrough with a founder, using a risk from your own
+        book.
       </p>
       <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
         <Button
@@ -35,16 +38,16 @@ export function Cta() {
           nativeButton={false}
           className="relative h-11 overflow-hidden bg-[#0e2c54] px-6 text-base text-white hover:bg-[#0e2c54]/85"
           render={
-            <MotionLink
-              href="/waitlist"
+            <motion.a
+              href={DEMO_HREF}
               initial="rest"
               animate="rest"
               whileHover="hover"
               className="relative overflow-hidden"
             >
-              Join the waitlist
+              Book a demo
               <ShineOverlay />
-            </MotionLink>
+            </motion.a>
           }
         />
         <Button
@@ -52,11 +55,11 @@ export function Cta() {
           variant="outline"
           nativeButton={false}
           className="h-11 border-[#0e2c54]/20 px-6 text-base text-[#0e2c54] hover:bg-[#eaf2fb]"
-          render={<a href="tel:+919877270734">Talk to Us</a>}
+          render={<Link href="/waitlist">Join the waitlist</Link>}
         />
       </div>
       <p className="mt-4 text-xs text-[#52627a]/70">
-        contact@niticover.com · +91 98772 70734
+        {SITE_EMAIL} · {SITE_PHONE_DISPLAY}
       </p>
     </section>
   );

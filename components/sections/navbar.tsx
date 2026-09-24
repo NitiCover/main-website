@@ -7,13 +7,15 @@ import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { DEMO_HREF } from "@/lib/site-content";
 
 const links = [
-  { href: "#what-we-do", label: "What We Do" },
-  { href: "#how-different", label: "How We're Different" },
-  { href: "#benefits", label: "Why Us" },
+  { href: "/platform", label: "Platform" },
+  { href: "/solutions", label: "Solutions" },
+  { href: "/about", label: "About" },
+  { href: "/investors", label: "Investors" },
+  { href: "/careers", label: "Careers" },
   { href: "#contact", label: "Contact" },
-  // { href: "/waitlist", label: "Waitlist" },
 ];
 
 export function Navbar() {
@@ -49,26 +51,40 @@ export function Navbar() {
             className="h-20 w-auto"
           />
         </Link>
-        <nav className="hidden items-center gap-8 md:flex">
-          {links.map((link) => (
-            <a
-              key={link.href}
-              href={
-                link.href.startsWith("#") && !isHome
-                  ? `/${link.href}`
-                  : link.href
-              }
-              className="text-sm font-medium text-[#0e2c54]/80 transition-colors hover:text-[#0e2c54]"
-            >
-              {link.label}
-            </a>
-          ))}
+        <nav className="hidden items-center gap-7 lg:flex">
+          {links.map((link) => {
+            const isAnchor = link.href.startsWith("#");
+            const active = pathname === link.href;
+            const className = cn(
+              "relative text-sm font-medium transition-colors hover:text-[#0e2c54]",
+              active ? "text-[#0e2c54]" : "text-[#0e2c54]/80",
+            );
+            return isAnchor ? (
+              <a
+                key={link.href}
+                href={isHome ? link.href : `/${link.href}`}
+                className={className}
+              >
+                {link.label}
+              </a>
+            ) : (
+              <Link key={link.href} href={link.href} className={className}>
+                {link.label}
+                {active && (
+                  <motion.span
+                    layoutId="nav-active"
+                    className="absolute inset-x-0 -bottom-1.5 h-0.5 rounded-full bg-[#3087d0]"
+                  />
+                )}
+              </Link>
+            );
+          })}
         </nav>
         <Button
           size="lg"
           nativeButton={false}
           className="bg-[#0e2c54] text-white hover:bg-[#0e2c54]/85"
-          render={<a href="/waitlist">Join the waitlist</a>}
+          render={<a href={DEMO_HREF}>Book a demo</a>}
         />
       </motion.div>
     </header>

@@ -10,10 +10,10 @@ const stats: {
   text?: string;
   label: string;
 }[] = [
-  { numeric: 20, suffix: "+", label: "Insurer partners compared" },
-  { text: "~1 week", label: "Average turnaround" },
-  { text: "24/7", label: "Call, WhatsApp & email support" },
-  { numeric: 100, suffix: "%", label: "Digital process" },
+  { numeric: 4, label: "Steps from intake to bound policy" },
+  { numeric: 6, label: "AI workflow capabilities" },
+  { numeric: 8, label: "Steps recorded in every decision trail" },
+  { numeric: 100, suffix: "%", label: "Binding decisions validated by a human" },
 ];
 
 export function Stats() {

@@ -1,7 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa6";
+import { DEMO_HREF } from "@/lib/site-content";
 import { HeroScrollImage } from "@/components/sections/hero-scroll-image";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 import {
@@ -55,7 +57,7 @@ export function Hero() {
                 variants={contentItem}
                 className="text-sm font-semibold uppercase tracking-[0.2em] text-[#3087d0]"
               >
-                Business insurance, reimagined
+                India&apos;s first AI-native insurance broker
               </motion.p>
 
               {/* Main Headline */}
@@ -63,10 +65,10 @@ export function Hero() {
                 variants={contentItem}
                 className="mt-4 font-sans text-4xl font-semibold leading-tight text-[#0e2c54] md:text-5xl"
               >
-                Get covered
+                The AI platform that runs
                 <br />
                 <span className="mt-1 block text-4xl font-bold leading-none text-[#0e2c54] md:text-[5rem] lg:text-[5.5rem]">
-                  without the busywork.
+                  insurance broking end to end.
                 </span>
               </motion.h1>
 
@@ -75,9 +77,9 @@ export function Hero() {
                 variants={contentItem}
                 className="mt-6 max-w-xl text-base leading-relaxed text-[#52627a] md:text-lg"
               >
-                NitiCover is an automated insurance brokerage that gets startups
-                and tech companies covered — fast, unbiased, and fully
-                transparent, from first message to signed policy.
+                NitiCover turns risk intake, insurer submissions, matching and
+                coverage comparison into one explainable workflow — autonomous
+                where possible, validated by humans where it matters.
               </motion.p>
 
               {/* Actions */}
@@ -86,17 +88,17 @@ export function Hero() {
                 className="mt-8 flex flex-wrap items-center gap-4"
               >
                 <motion.a
-                  href="/waitlist"
+                  href={DEMO_HREF}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   className="inline-flex min-h-12 items-center gap-2 rounded-full bg-[#0e2c54] px-7 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#0e2c54]/85"
                 >
-                  <span>Join the waitlist</span>
+                  <span>Book a demo</span>
                   <FaArrowRight className="size-3.5" />
                 </motion.a>
 
                 <motion.a
-                  href="#what-we-do"
+                  href="#platform"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   className="inline-flex min-h-12 items-center gap-2 rounded-full border border-[#0e2c54]/20 bg-white/80 px-6 py-3 text-sm font-medium text-[#0e2c54] shadow-xs backdrop-blur-sm transition-colors hover:bg-white"
@@ -104,6 +106,19 @@ export function Hero() {
                   <span>See how it works</span>
                 </motion.a>
               </motion.div>
+
+              <motion.p
+                variants={contentItem}
+                className="mt-5 text-sm text-[#52627a]"
+              >
+                Built for brokers and insurers. Individuals:{" "}
+                <Link
+                  href="/waitlist"
+                  className="font-semibold text-[#3087d0] transition-colors hover:text-[#0e2c54]"
+                >
+                  join the waitlist →
+                </Link>
+              </motion.p>
             </motion.div>
           }
         >

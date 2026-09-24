@@ -5,29 +5,29 @@ import { InView } from "@/components/motion-primitives/in-view";
 
 const comparisons = [
   {
-    category: "Placement Speed",
-    traditional: "2–4 week turnaround delays stalled by manual sequential workflows and human email handoffs",
-    niticover: "<48 hours quote-to-bind powered by autonomous AI underwriting with zero handoff latency",
+    category: "Submissions",
+    traditional: "Hours per placement spent re-keying client data into insurer-specific formats",
+    niticover: "Insurer-ready dossiers generated in each insurer's preferred format, kept in sync as details change",
   },
   {
-    category: "Policy Recommendation",
-    traditional: "Commission and relationship bias favoring broker margins or partner quotas",
-    niticover: "100% unbiased risk profiling matched strictly to your actual company exposure",
+    category: "Recommendations",
+    traditional: "Clients and regulators ask \"why this policy?\" — and the answer lives in someone's inbox",
+    niticover: "Every recommendation carries its reasoning, with clause-level comparison of limits, deductibles and exclusions",
   },
   {
-    category: "Audit & Compliance",
-    traditional: "Zero audit trail with negotiations scattered across untracked WhatsApp chats and emails",
-    niticover: "100% digitized, 10-year IRDAI-compliant audit trail with every clause and quote timestamped",
+    category: "Renewals & follow-ups",
+    traditional: "Follow-ups, document chasing and renewals depend on individual diligence, not a system",
+    niticover: "Workflow agents handle follow-ups, document collection, reminders, renewal alerts and escalations",
   },
   {
-    category: "Transparency & Trust",
-    traditional: "Opaque 'black box' proposals forcing founders to hire outside consultants to avoid overpaying",
-    niticover: "Transparent clause-by-clause breakdown with licensed broker and insurer sign-off on every case",
+    category: "Audit trail",
+    traditional: "Every placement rebuilt from scratch, with nobody holding the full history in one place",
+    niticover: "Complete decision history — who, what, when, why, source data, modification and approval",
   },
   {
-    category: "Availability & Accuracy",
-    traditional: "Business-hours availability only with high error rates from manual data entry",
-    niticover: "24/7 AI-native workflow with 70% reduction in manual processing errors",
+    category: "Accountability",
+    traditional: "Unstructured data and opaque decisions that are hard to defend",
+    niticover: "Authorised personnel validate defined decision points before anything binds",
   },
 ];
 
@@ -56,7 +56,7 @@ export function HowDifferent() {
             className="rounded-2xl border border-black/5 bg-white p-8"
           >
             <h3 className="text-lg font-semibold text-[#52627a]">
-              Traditional brokers
+              Manual broking
             </h3>
             <ul className="mt-6 space-y-5">
               {comparisons.map((item) => (

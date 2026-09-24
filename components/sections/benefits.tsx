@@ -5,47 +5,47 @@ import {
   Eye,
   Zap,
   Clock,
-  Sparkles,
+  Database,
   ShieldCheck,
 } from "lucide-react";
 import { ScrollStack, ScrollStackItem } from "@/components/reactbits/scroll-stack";
 
 const benefits = [
   {
-    icon: Scale,
-    title: "Zero bias",
+    icon: Zap,
+    title: "Faster placements",
     description:
-      "Every quote is generated the same automated way, so you get the best fit for your business — not the policy that pays the broker the biggest commission.",
+      "Cut re-keying and chasing; spend the time on advice. Insurer-ready submissions are generated once from the risk record and kept in sync.",
+  },
+  {
+    icon: Scale,
+    title: "Defensible advice",
+    description:
+      "Every recommendation ships with its reasoning and approval trail — so \"why this policy?\" always has an answer.",
   },
   {
     icon: Eye,
-    title: "Full transparency",
+    title: "Complete decision history",
     description:
-      "Both you and the insurer see exactly where things stand, at every step, with a complete 10-year audit trail and nothing happening behind closed doors.",
-  },
-  {
-    icon: Zap,
-    title: "Fully digital",
-    description:
-      "No paperwork chases. Every quote, comparison, and bound policy lives in one place, accessible whenever you need it.",
+      "Who, what, when, why, source data, modification and approval — recorded on every placement.",
   },
   {
     icon: Clock,
-    title: "24/7 availability",
+    title: "Renewals that don't leak",
     description:
-      "Reach us anytime over call, WhatsApp, or email — autonomous agents ensure zero handoff latency and instant resolutions.",
+      "Agents track every expiry and start the renewal conversation on time, instead of relying on individual diligence.",
   },
   {
-    icon: Sparkles,
-    title: "Best-of-market quotes",
+    icon: Database,
+    title: "A structured book",
     description:
-      "We analyze 20+ insurance providers so you don't have to, then narrow it down to the best 4–5 curated options for your risk profile.",
+      "Your placement history becomes searchable, comparable data — not a folder of PDFs.",
   },
   {
     icon: ShieldCheck,
-    title: "Fast turnaround & licensed sign-off",
+    title: "Humans stay accountable",
     description:
-      "What normally takes 2–4 weeks with traditional brokers takes under 48 hours with NitiCover, backed by licensed experts on every policy.",
+      "Automation does the work; authorised people review defined decision points before anything binds. Always.",
   },
 ];
 
@@ -58,7 +58,7 @@ export function Benefits() {
             Why us
           </p>
           <h2 className="mt-4 text-3xl font-semibold text-[#0e2c54] md:text-4xl">
-            Everything you&apos;d want from a broker, minus the friction
+            Autonomous where possible. Human where it matters.
           </h2>
         </div>
 

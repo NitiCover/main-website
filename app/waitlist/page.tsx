@@ -7,7 +7,7 @@ import { AirtableSlot } from "@/components/waitlist/airtable-preload";
 export const metadata: Metadata = {
   title: "Join the Waitlist — NitiCover",
   description:
-    "Sign up for the NitiCover waitlist and be the first to know when we launch.",
+    "Insurance for you and your family — explained, compared, done. Join the NitiCover waitlist and we'll email you once, when we open.",
 };
 
 export default function WaitlistPage() {

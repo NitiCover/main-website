@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "NitiCover — Smart Insurance, Secure Future",
   description:
-    "NitiCover is an automated insurance brokerage for startups and tech companies. Get quotes from 20+ insurers in about a week, and choose the best from the top 4-5 — no hassle, full transparency, 24/7 support.",
+    "India's first AI-native insurance broker. NitiCover turns risk intake, insurer submissions, matching and coverage comparison into one explainable workflow — autonomous where possible, validated by humans where it matters.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

@@ -51,7 +51,7 @@ export function AirtableSlotProvider({
   );
 }
 
-/** Placeholder rendered on /waitlist — the warm iframe snaps to fill this. */
+/** Placeholder rendered on /waitlist; the warm iframe snaps to fill this. */
 export function AirtableSlot() {
   const ctx = useContext(SlotContext);
   return (
@@ -59,7 +59,7 @@ export function AirtableSlot() {
       ref={ctx?.setSlot}
       className={cn(
         "overflow-hidden rounded-xl border border-black/10 bg-white shadow-sm",
-        !ctx?.loaded && "animate-pulse bg-[#0e2c54]/5",
+        !ctx?.loaded && "animate-pulse bg-niti-ink/5",
       )}
       style={{ height: 900 }}
     />
@@ -81,7 +81,7 @@ function AirtablePreload({
   const frameRef = useRef<HTMLIFrameElement | null>(null);
 
   // Track the slot's screen position every frame while on /waitlist so the
-  // iframe stays glued to it through scroll/resize — it's a single iframe
+  // iframe stays glued to it through scroll/resize, as it's a single iframe
   // that's never unmounted, so nothing reloads.
   useEffect(() => {
     if (!isWaitlist) return;

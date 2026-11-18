@@ -53,9 +53,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "NitiCover — Smart Insurance, Secure Future",
+  title: "NitiCover - India's first AI platform for insurance broking",
   description:
-    "India's first AI-native insurance broker. NitiCover turns risk intake, insurer submissions, matching and coverage comparison into one explainable workflow — autonomous where possible, validated by humans where it matters.",
+    "India's first AI platform that runs insurance broking end-to-end for businesses.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

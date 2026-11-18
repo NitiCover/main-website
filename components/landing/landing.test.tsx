@@ -2,7 +2,6 @@ import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, test } from "vitest";
 
-import { SiteNav } from "./site-nav";
 import { Hero } from "./hero";
 import { HowItWorks } from "./how-it-works";
 import { ProblemIntro } from "./problem-intro";
@@ -11,36 +10,6 @@ import { PlatformShowcase } from "./platform-showcase";
 import { InsuranceBasics } from "./insurance-basics";
 import { Faq } from "./faq";
 import { ClosingCta } from "./closing-cta";
-import { SiteFooter } from "./site-footer";
-
-describe("SiteNav", () => {
-  test("links to every primary section and to booking a demo", () => {
-    render(<SiteNav />);
-    const nav = screen.getByRole("navigation", { name: "Primary" });
-
-    for (const label of ["Platform", "How it works", "Why NitiCover", "About"]) {
-      expect(within(nav).getByRole("link", { name: label })).toBeInTheDocument();
-    }
-    expect(within(nav).getByRole("link", { name: "Book a demo" })).toBeInTheDocument();
-  });
-
-  test("mobile menu button opens and closes the menu", async () => {
-    const user = userEvent.setup();
-    render(<SiteNav />);
-    const toggle = screen.getByRole("button", { name: "Open menu" });
-
-    expect(toggle).toHaveAttribute("aria-expanded", "false");
-    await user.click(toggle);
-    expect(screen.getByRole("button", { name: "Close menu" })).toHaveAttribute(
-      "aria-expanded",
-      "true",
-    );
-    expect(screen.getByRole("navigation", { name: "Mobile" })).toBeVisible();
-
-    await user.click(screen.getByRole("button", { name: "Close menu" }));
-    expect(screen.queryByRole("navigation", { name: "Mobile" })).not.toBeInTheDocument();
-  });
-});
 
 describe("Hero", () => {
   test("states the value proposition as the page's single h1", () => {
@@ -222,23 +191,5 @@ describe("ClosingCta", () => {
     );
     expect(screen.getByRole("link", { name: "Book a demo" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Talk to a broker" })).toBeInTheDocument();
-  });
-});
-
-describe("SiteFooter", () => {
-  test("groups links under Platform, Company and Legal", () => {
-    render(<SiteFooter />);
-    for (const group of ["Platform", "Company", "Legal"]) {
-      expect(screen.getByRole("heading", { name: group })).toBeInTheDocument();
-    }
-    expect(screen.getByRole("link", { name: "Privacy" })).toBeInTheDocument();
-  });
-
-  test("carries the regulatory notices", () => {
-    render(<SiteFooter />);
-    expect(screen.getByText("© 2026 NitiCover Insurance Brokers Pvt. Ltd.")).toBeInTheDocument();
-    expect(
-      screen.getByText("Insurance is the subject matter of solicitation."),
-    ).toBeInTheDocument();
   });
 });

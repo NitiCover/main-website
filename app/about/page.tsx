@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { Eye, ShieldCheck, UserCheck } from "lucide-react";
-import { Navbar } from "@/components/sections/navbar";
 import { PageHero } from "@/components/sections/page-hero";
 import { FounderCards } from "@/components/sections/founders";
-import { Footer } from "@/components/sections/footer";
 import { InfoCard } from "@/components/ui/info-card";
 import { PillLink } from "@/components/ui/pill-link";
 import { Reveal } from "@/components/ui/reveal";
@@ -21,7 +19,6 @@ const valueIcons = [Eye, UserCheck, ShieldCheck];
 export default function AboutPage() {
   return (
     <div className="flex flex-1 flex-col">
-      <Navbar />
       <PageHero
         eyebrow="About NitiCover"
         title="Smart insurance, secure future."
@@ -68,8 +65,6 @@ export default function AboutPage() {
           </div>
         </Reveal>
       </section>
-
-      <Footer />
     </div>
   );
 }

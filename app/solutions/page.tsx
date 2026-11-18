@@ -1,10 +1,8 @@
 import type { ReactNode } from "react";
 import type { Metadata } from "next";
 import { Building2, Landmark, Users } from "lucide-react";
-import { Navbar } from "@/components/sections/navbar";
 import { PageHero } from "@/components/sections/page-hero";
 import { Cta } from "@/components/sections/cta";
-import { Footer } from "@/components/sections/footer";
 import { InfoCard } from "@/components/ui/info-card";
 import { PillLink } from "@/components/ui/pill-link";
 import { Reveal } from "@/components/ui/reveal";
@@ -78,7 +76,6 @@ function Audience({
 export default function SolutionsPage() {
   return (
     <div className="flex flex-1 flex-col">
-      <Navbar />
       <PageHero
         eyebrow="Solutions"
         title="One platform. Two sides of the placement."
@@ -170,7 +167,6 @@ export default function SolutionsPage() {
       </section>
 
       <Cta />
-      <Footer />
     </div>
   );
 }

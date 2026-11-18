@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { DEMO_HREF } from "@/lib/landing-content";
+import { DEMO_HREF } from "@/lib/site-links";
 
 import { Decor, Highlight, pct } from "@/components/brand/primitives";
 

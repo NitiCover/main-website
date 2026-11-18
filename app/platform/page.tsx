@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
-import { Navbar } from "@/components/sections/navbar";
 import { PageHero } from "@/components/sections/page-hero";
 import { Capabilities } from "@/components/sections/capabilities";
 import { Explainability } from "@/components/sections/explainability";
 import { Cta } from "@/components/sections/cta";
-import { Footer } from "@/components/sections/footer";
 import { InfoCard } from "@/components/ui/info-card";
 import { PillLink } from "@/components/ui/pill-link";
 import { Reveal } from "@/components/ui/reveal";
@@ -31,7 +29,6 @@ const reviewTone = [
 export default function PlatformPage() {
   return (
     <div className="flex flex-1 flex-col">
-      <Navbar />
       <PageHero
         eyebrow="Platform"
         title="AI-assisted. Explainable. Human where it matters."
@@ -128,7 +125,6 @@ export default function PlatformPage() {
       </section>
 
       <Cta />
-      <Footer />
     </div>
   );
 }

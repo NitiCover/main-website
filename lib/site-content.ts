@@ -12,16 +12,16 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import type { StaticImageData } from "next/image";
+import { SITE_EMAIL } from "./site-links";
 import yashPhoto from "@/assets/yash.png";
 import arunimPhoto from "@/assets/arunim.png";
 
-export const SITE_EMAIL = "yash.sarang@niticover.com";
+// SITE_EMAIL and DEMO_HREF live in site-links (single source for links).
+export { DEMO_HREF, SITE_EMAIL } from "./site-links";
 export const SITE_PHONE_DISPLAY = "+91 99305 07114";
 export const SITE_PHONE_TEL = "tel:+919930507114";
 export const FOUNDER_EMAIL = SITE_EMAIL;
 export const COMPANY_NAME = "NitiCover Pvt. Ltd.";
-// No demo form yet — "Book a demo" opens an email to the founder.
-export const DEMO_HREF = `mailto:${SITE_EMAIL}?subject=NitiCover%20demo%20request`;
 export const LINKEDIN_URL = "https://in.linkedin.com/company/niticover";
 
 export type Capability = {

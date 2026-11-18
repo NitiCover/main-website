@@ -1,15 +1,6 @@
 // Copy for the home page, from Figma "Niticover" (node 170:72).
 // Entries marked DRAFT are not in the design and need sign-off.
 
-export const DEMO_HREF = "/waitlist";
-
-export const navLinks = [
-  { label: "Platform", href: "/platform" },
-  { label: "How it works", href: "#how-it-works" },
-  { label: "Why NitiCover", href: "#why-niticover" },
-  { label: "About", href: "/about" },
-] as const;
-
 export const steps = [
   {
     title: "Tell us once",
@@ -170,33 +161,5 @@ export const faqs = [
     question: "What happens to my data and conversations?",
     answer:
       "Your documents and conversations are stored securely and used only to find, place and service your insurance.",
-  },
-] as const;
-
-// Legal pages do not exist yet, so those links are placeholders.
-export const footerGroups = [
-  {
-    heading: "Platform",
-    links: [
-      { label: "How it works", href: "#how-it-works" },
-      { label: "Why NitiCover", href: "#why-niticover" },
-      { label: "Insurance 101", href: "#insurance-101" },
-    ],
-  },
-  {
-    heading: "Company",
-    links: [
-      { label: "About", href: "/about" },
-      { label: "Join us", href: "/careers" },
-      { label: "Contact", href: DEMO_HREF },
-    ],
-  },
-  {
-    heading: "Legal",
-    links: [
-      { label: "Privacy", href: "#" },
-      { label: "Terms", href: "#" },
-      { label: "Disclosures", href: "#" },
-    ],
   },
 ] as const;

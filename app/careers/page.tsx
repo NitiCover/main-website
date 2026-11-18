@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Bot, Rocket, Users } from "lucide-react";
-import { Navbar } from "@/components/sections/navbar";
 import { PageHero } from "@/components/sections/page-hero";
-import { Footer } from "@/components/sections/footer";
 import { InfoCard } from "@/components/ui/info-card";
 import { PillLink } from "@/components/ui/pill-link";
 import { Reveal } from "@/components/ui/reveal";
@@ -25,7 +23,6 @@ const whyIcons = [Rocket, Bot, Users];
 export default function CareersPage() {
   return (
     <div className="flex flex-1 flex-col">
-      <Navbar />
       <PageHero
         eyebrow="Careers"
         title="Rebuild a ₹-lakh-crore industry's workflow. From the inside."
@@ -104,8 +101,6 @@ export default function CareersPage() {
           </div>
         </Reveal>
       </section>
-
-      <Footer />
     </div>
   );
 }

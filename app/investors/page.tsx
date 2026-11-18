@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { CircleCheckBig } from "lucide-react";
-import { Navbar } from "@/components/sections/navbar";
 import { PageHero } from "@/components/sections/page-hero";
 import { FounderCards } from "@/components/sections/founders";
-import { Footer } from "@/components/sections/footer";
 import { InfoCard } from "@/components/ui/info-card";
 import { PillLink } from "@/components/ui/pill-link";
 import { Reveal } from "@/components/ui/reveal";
@@ -26,7 +24,6 @@ const deckHref = `mailto:${FOUNDER_EMAIL}?subject=NitiCover%20investor%20deck`;
 export default function InvestorsPage() {
   return (
     <div className="flex flex-1 flex-col">
-      <Navbar />
       <PageHero
         eyebrow="Investors & partners"
         title="Building the workflow layer for Indian insurance."
@@ -139,8 +136,6 @@ export default function InvestorsPage() {
           <p className="mt-4 text-xs text-[#52627a]/70">{FOUNDER_EMAIL}</p>
         </Reveal>
       </section>
-
-      <Footer />
     </div>
   );
 }

@@ -2,16 +2,21 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
-import { DEMO_HREF, navLinks } from "@/lib/landing-content";
+import { ButtonLink } from "@/components/brand";
+import { DEMO_HREF, navLinks } from "@/lib/site-links";
 import { cn } from "@/lib/utils";
 
 const pill =
   "rounded-full px-[18px] py-[9px] font-headline text-lg leading-none transition-colors";
+const linkClass = (active: boolean) =>
+  cn(pill, "text-niti-teal hover:bg-niti-teal/8", active && "bg-niti-teal/8");
 
 export function SiteNav() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <header className="relative z-30 bg-white">
@@ -32,17 +37,15 @@ export function SiteNav() {
             <Link
               key={link.label}
               href={link.href}
-              className={cn(pill, "text-niti-teal hover:bg-niti-teal/8")}
+              aria-current={link.href === pathname ? "page" : undefined}
+              className={linkClass(link.href === pathname)}
             >
               {link.label}
             </Link>
           ))}
-          <Link
-            href={DEMO_HREF}
-            className={cn(pill, "bg-niti-teal text-white hover:bg-niti-ink")}
-          >
+          <ButtonLink href={DEMO_HREF} size="sm">
             Book a demo
-          </Link>
+          </ButtonLink>
         </nav>
 
         <button
@@ -88,18 +91,17 @@ export function SiteNav() {
               key={link.label}
               href={link.href}
               onClick={() => setOpen(false)}
-              className={cn(pill, "text-niti-teal hover:bg-niti-teal/8")}
+              aria-current={link.href === pathname ? "page" : undefined}
+              className={linkClass(link.href === pathname)}
             >
               {link.label}
             </Link>
           ))}
-          <Link
-            href={DEMO_HREF}
-            onClick={() => setOpen(false)}
-            className={cn(pill, "mt-1 bg-niti-teal text-center text-white")}
-          >
-            Book a demo
-          </Link>
+          <div onClick={() => setOpen(false)} className="mt-1 flex flex-col">
+            <ButtonLink href={DEMO_HREF} size="sm">
+              Book a demo
+            </ButtonLink>
+          </div>
         </nav>
       )}
     </header>

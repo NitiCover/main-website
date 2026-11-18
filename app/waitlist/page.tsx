@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import { Navbar } from "@/components/sections/navbar";
-import { Footer } from "@/components/sections/footer";
 import { InView } from "@/components/motion-primitives/in-view";
 import { AirtableSlot } from "@/components/waitlist/airtable-preload";
 
@@ -13,7 +11,6 @@ export const metadata: Metadata = {
 export default function WaitlistPage() {
   return (
     <div className="flex flex-1 flex-col">
-      <Navbar />
       <section className="mx-auto w-full max-w-3xl px-6 text-center">
         <InView
           className="mt-10"
@@ -26,7 +23,6 @@ export default function WaitlistPage() {
           <AirtableSlot />
         </InView>
       </section>
-      <Footer />
     </div>
   );
 }

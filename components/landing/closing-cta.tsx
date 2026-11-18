@@ -1,5 +1,5 @@
 import { ButtonLink, CtaBand, Highlight } from "@/components/brand";
-import { DEMO_HREF } from "@/lib/landing-content";
+import { DEMO_HREF } from "@/lib/site-links";
 
 export function ClosingCta() {
   return (

@@ -1,7 +1,27 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { ReactNode } from "react";
 
-import { footerGroups } from "@/lib/landing-content";
+import { footerGroups } from "@/lib/site-links";
+
+const footerLinkClass =
+  "font-inter text-base text-niti-steel transition-colors hover:text-niti-deep";
+
+function FooterLink({ href, children }: { href: string; children: ReactNode }) {
+  // mailto: and other schemes are not routes, so they get a plain anchor.
+  if (href.startsWith("/") || href.startsWith("#")) {
+    return (
+      <Link href={href} className={footerLinkClass}>
+        {children}
+      </Link>
+    );
+  }
+  return (
+    <a href={href} className={footerLinkClass}>
+      {children}
+    </a>
+  );
+}
 
 // Figma frame 225:74.
 export function SiteFooter() {
@@ -38,12 +58,7 @@ export function SiteFooter() {
               <ul className="flex flex-col gap-3">
                 {group.links.map((link) => (
                   <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="font-inter text-base text-niti-steel transition-colors hover:text-niti-deep"
-                    >
-                      {link.label}
-                    </Link>
+                    <FooterLink href={link.href}>{link.label}</FooterLink>
                   </li>
                 ))}
               </ul>

@@ -7,7 +7,8 @@ import {
   Stack_Sans_Headline,
   Stack_Sans_Text,
 } from "next/font/google";
-import { ParticleField } from "@/components/background/particle-field";
+import { SiteFooter } from "@/components/site/site-footer";
+import { SiteNav } from "@/components/site/site-nav";
 import { AirtableSlotProvider } from "@/components/waitlist/airtable-preload";
 import "./globals.css";
 
@@ -63,11 +64,20 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${stackSansHeadline.variable} ${stackSansText.variable} ${parkinsans.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
-        <ParticleField />
-        <div className="relative z-10 flex min-h-full flex-1 flex-col">
-          <AirtableSlotProvider>{children}</AirtableSlotProvider>
-        </div>
+      <body className="min-h-full flex flex-col bg-white">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-full focus:bg-niti-teal focus:px-5 focus:py-3 focus:font-headline focus:text-white"
+        >
+          Skip to content
+        </a>
+        <AirtableSlotProvider>
+          <SiteNav />
+          <main id="main" className="flex flex-1 flex-col">
+            {children}
+          </main>
+          <SiteFooter />
+        </AirtableSlotProvider>
       </body>
     </html>
   );

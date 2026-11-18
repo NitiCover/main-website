@@ -117,3 +117,10 @@ Restyle `app/about/page.tsx`, `app/careers/page.tsx`, `app/investors/page.tsx`. 
 3. Replace remaining raw legacy colours (`#0e2c54`, `#3087d0`, `#52627a`, `#f4f7fb`, `#eaf2fb`) anywhere in `app/` and `components/` with brand tokens; update `:root` `--primary`, `--foreground`, `--ring`, etc. in `app/globals.css` to brand values (`--foreground`/`--primary` → `#193133`, `--ring` → `#014d43`, `--secondary`/`--accent`/`--muted` → `#f1f4fa`, `--muted-foreground` → `#56657a`) and delete `--brand-navy`/`--brand-blue` and their theme mappings once unused.
 4. Update root `metadata` description/title to the home page value proposition ("India's first AI platform that runs insurance broking end-to-end for businesses"), no em dash.
 5. Verify: `rg -n "#0e2c54|#3087d0|brand-navy|brand-blue" app components` returns nothing; `npm test`, `npm run lint`, `npx tsc --noEmit`, `npm run build` all clean.
+6. Cross-cutting cleanups found in task reviews:
+   - `StepCard` (and `FeatureCard`) accept an optional `className` merged with `cn`, and `StepCard` fills its grid cell (`h-full`). Remove every `[&>div]:h-full` wrapper hack from the pages (platform, solutions, careers, investors) and pass classes directly.
+   - `StepCard`/`FeatureCard` wrap `children` in a `div` instead of a `p`, so block children are valid.
+   - `components/landing/hero.tsx` "Book a Demo" uses `ButtonLink` (lime, with the same visual classes as today), so the `mailto:` `DEMO_HREF` renders a plain `<a>`.
+   - Replace every em dash (U+2014) in user-visible copy in `lib/site-content.ts`, `lib/landing-content.ts` and `app/**` with a hyphen, comma or colon as reads best.
+   - Move the `next/image` mock duplicated in test files into `vitest.setup.ts` (pass through `style`, drop `fill`/`placeholder`/`blurDataURL`/`priority`), and add a founder-cards assertion that the crop transform style reaches the image.
+   - Replace raw `text-[#fafafa]` with `text-white` across app/components; remove the redundant `/node_modules` line in `.gitignore` (keep `**/node_modules`).

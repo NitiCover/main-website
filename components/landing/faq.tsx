@@ -5,7 +5,7 @@ import { useId, useState } from "react";
 import { faqs } from "@/lib/landing-content";
 import { cn } from "@/lib/utils";
 
-import { Eyebrow, Highlight } from "./primitives";
+import { Eyebrow, Highlight } from "@/components/brand/primitives";
 
 // Figma frame 225:2. One answer open at a time; the first starts open.
 export function Faq() {

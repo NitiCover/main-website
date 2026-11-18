@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { Decor, Eyebrow, pct } from "./primitives";
+import { Decor, Eyebrow, pct } from "@/components/brand/primitives";
 
 // Figma frame 199:116, 1280 x 805. Offsets are % of that frame.
 export function ProblemIntro() {

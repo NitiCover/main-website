@@ -6,7 +6,7 @@ import { useId, useState } from "react";
 import { problemsAndFixes } from "@/lib/landing-content";
 import { cn } from "@/lib/utils";
 
-import { Decor, Eyebrow } from "./primitives";
+import { Decor, Eyebrow } from "@/components/brand/primitives";
 import { nextTabIndex } from "./tab-keys";
 
 const views = [

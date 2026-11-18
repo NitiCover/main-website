@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { insurers, platformPromises } from "@/lib/landing-content";
 import { cn } from "@/lib/utils";
 
-import { Decor, Eyebrow, Highlight } from "./primitives";
+import { Decor, Eyebrow, Highlight } from "@/components/brand/primitives";
 
 // Figma frame 211:103. The 760 x 760 "Swirl" artboard scales as one unit:
 // `--u` is one Figma pixel of that artboard.

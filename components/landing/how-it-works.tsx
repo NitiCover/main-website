@@ -1,7 +1,7 @@
 import { steps } from "@/lib/landing-content";
 import { cn } from "@/lib/utils";
 
-import { Decor, Eyebrow, Highlight } from "./primitives";
+import { Decor, Eyebrow, Highlight } from "@/components/brand/primitives";
 
 // Figma frame 170:134 (1280 wide). At lg+ `--u` is one Figma pixel scaled
 // to the container, so the phone + swirl artwork keeps its exact overlap

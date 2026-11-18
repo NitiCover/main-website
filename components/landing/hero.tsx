@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { DEMO_HREF } from "@/lib/landing-content";
 
-import { Decor, Highlight, pct } from "./primitives";
+import { Decor, Highlight, pct } from "@/components/brand/primitives";
 
 // Figma frame 199:89 is 1219 x 691; decor offsets below are % of that box.
 export function Hero() {

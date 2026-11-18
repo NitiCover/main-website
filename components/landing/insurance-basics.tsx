@@ -5,7 +5,7 @@ import { useId, useState } from "react";
 import { insuranceTerms } from "@/lib/landing-content";
 import { cn } from "@/lib/utils";
 
-import { Decor, Eyebrow, Highlight } from "./primitives";
+import { Decor, Eyebrow, Highlight } from "@/components/brand/primitives";
 import { nextTabIndex } from "./tab-keys";
 
 // Figma frame 224:98.

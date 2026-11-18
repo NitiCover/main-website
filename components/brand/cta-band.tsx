@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 
+import { cn } from "@/lib/utils";
+
 import { Decor } from "./primitives";
 
 // Figma frame 225:73: a 1220 x 480 card. Swirl offsets are % of the card.
@@ -8,11 +10,13 @@ export function CtaBand({
   description,
   actions,
   id,
+  descriptionClassName,
 }: {
   title: ReactNode;
   description?: ReactNode;
   actions?: ReactNode;
   id?: string;
+  descriptionClassName?: string;
 }) {
   return (
     <section aria-labelledby={id} className="mx-auto w-full max-w-[1280px] px-3 sm:px-[30px]">
@@ -36,7 +40,12 @@ export function CtaBand({
             {title}
           </h2>
           {description && (
-            <p className="max-w-[640px] font-inter text-[clamp(1rem,0.9rem+0.4vw,1.1875rem)] text-white/85 lg:max-w-[760px]">
+            <p
+              className={cn(
+                "max-w-[640px] font-inter text-[clamp(1rem,0.9rem+0.4vw,1.1875rem)] text-white/85 lg:max-w-[760px]",
+                descriptionClassName,
+              )}
+            >
               {description}
             </p>
           )}

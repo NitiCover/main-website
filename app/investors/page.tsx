@@ -1,11 +1,22 @@
 import type { Metadata } from "next";
-import { CircleCheckBig } from "lucide-react";
-import { PageHero } from "@/components/sections/page-hero";
-import { FounderCards } from "@/components/sections/founders";
-import { InfoCard } from "@/components/ui/info-card";
-import { PillLink } from "@/components/ui/pill-link";
-import { Reveal } from "@/components/ui/reveal";
-import { SectionHeading } from "@/components/ui/section-heading";
+import {
+  CircleCheckBig,
+  Handshake,
+  Landmark,
+  Network,
+  type LucideIcon,
+} from "lucide-react";
+import {
+  ButtonLink,
+  CtaBand,
+  Decor,
+  FeatureCard,
+  FounderCards,
+  Highlight,
+  PageHero,
+  SectionHeader,
+  StepCard,
+} from "@/components/brand";
 import {
   FOUNDER_EMAIL,
   investorThesis,
@@ -14,128 +25,202 @@ import {
 } from "@/lib/site-content";
 
 export const metadata: Metadata = {
-  title: "Investors & Partners — NitiCover",
+  title: "Investors & Partners - NitiCover",
   description:
     "NitiCover is building the workflow layer for Indian insurance. Read the thesis, meet the founders and request the deck.",
 };
 
 const deckHref = `mailto:${FOUNDER_EMAIL}?subject=NitiCover%20investor%20deck`;
+const founderHref = `mailto:${FOUNDER_EMAIL}`;
+
+// The partner data has no icon field, so icons are looked up by title with a
+// fallback: a newly added partner type still renders.
+const partnerIcons: Record<string, LucideIcon> = {
+  Insurers: Landmark,
+  "Broking houses": Handshake,
+  "Distribution & ecosystem": Network,
+};
+const fallbackIcon: LucideIcon = Handshake;
+
+const sectionClass = "mx-auto w-full max-w-[1280px] px-4 sm:px-8 lg:px-[72px]";
 
 export default function InvestorsPage() {
   return (
-    <div className="flex flex-1 flex-col">
+    <div className="flex flex-1 flex-col gap-[clamp(40px,5.6vw,72px)] bg-white pb-[clamp(40px,5.6vw,72px)]">
       <PageHero
         eyebrow="Investors & partners"
-        title="Building the workflow layer for Indian insurance."
-        description="Broking is a large, relationship-driven industry that still runs on manual work. We are turning it into structured data, agent-run workflows and explainable decisions — with humans accountable at every checkpoint."
+        title={
+          <>
+            Building the <Highlight>workflow layer</Highlight> for Indian
+            insurance.
+          </>
+        }
+        description="Broking is a large, relationship-driven industry that still runs on manual work. We are turning it into structured data, agent-run workflows and explainable decisions - with humans accountable at every checkpoint."
         actions={
           <>
-            <PillLink href={deckHref}>Request the deck</PillLink>
-            <PillLink href={`mailto:${FOUNDER_EMAIL}`} variant="outline">
+            <ButtonLink href={deckHref} variant="lime">
+              Request the deck
+            </ButtonLink>
+            <ButtonLink href={founderHref} variant="outline-light">
               Talk to the founders
-            </PillLink>
+            </ButtonLink>
           </>
         }
       />
 
-      <section className="bg-[#f4f7fb] py-24">
-        <div className="mx-auto max-w-6xl px-6">
-          <SectionHeading eyebrow="The thesis" title="Why now, why this" />
-          <div className="mt-14 grid gap-5 md:grid-cols-3">
+      <section aria-labelledby="thesis-heading" className={sectionClass}>
+        <div className="flex flex-col gap-10">
+          <SectionHeader
+            id="thesis-heading"
+            eyebrow="The thesis"
+            title={
+              <>
+                Why now, <Highlight>why this</Highlight>
+              </>
+            }
+          />
+          <ol className="grid gap-4 md:grid-cols-3 lg:gap-5">
             {investorThesis.map((item, i) => (
-              <Reveal key={item.title} delay={i * 0.06}>
-                <InfoCard index={i} title={item.title}>
-                  {item.description}
-                </InfoCard>
-              </Reveal>
+              <li key={item.title} className="flex">
+                <div className="flex-1 [&>div]:h-full">
+                  <StepCard index={i} title={item.title}>
+                    {item.description}
+                  </StepCard>
+                </div>
+              </li>
             ))}
-          </div>
+          </ol>
         </div>
       </section>
 
-      <section className="bg-white py-24">
-        <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
-          <SectionHeading
-            align="left"
+      <section aria-labelledby="moat-heading" className={sectionClass}>
+        <div className="grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+          <SectionHeader
+            id="moat-heading"
             eyebrow="Defensibility"
-            title="AI itself is not the moat. What compounds is."
+            title={
+              <>
+                AI itself is not the moat.{" "}
+                <Highlight>What compounds is.</Highlight>
+              </>
+            }
           />
-          <ul className="grid gap-3 sm:grid-cols-2">
-            {moats.map((m, i) => (
-              <Reveal
+          <ul className="grid gap-4 sm:grid-cols-2">
+            {moats.map((m) => (
+              <li
                 key={m}
-                as="li"
-                delay={(i % 2) * 0.05 + Math.floor(i / 2) * 0.04}
-                y={12}
-                className="flex items-center gap-3 rounded-xl border border-black/5 bg-[#f4f7fb] px-4 py-3.5 text-[0.95rem] font-medium text-[#0e2c54]"
+                className="flex items-center gap-3 rounded-[20px] bg-niti-mist p-5 font-headline text-lg font-semibold text-niti-ink"
               >
-                <CircleCheckBig className="h-4.5 w-4.5 shrink-0 text-[#3087d0]" />
+                <CircleCheckBig
+                  aria-hidden="true"
+                  className="size-5 shrink-0 text-niti-teal"
+                />
                 {m}
-              </Reveal>
+              </li>
             ))}
           </ul>
         </div>
       </section>
 
-      <section className="bg-[#f4f7fb] py-24">
-        <div className="mx-auto max-w-5xl px-6">
-          <SectionHeading eyebrow="Founding team" title="Who's building it" />
-          <div className="mt-14">
-            <FounderCards />
-          </div>
+      <section aria-labelledby="founders-heading" className={sectionClass}>
+        <div className="flex flex-col gap-10">
+          <SectionHeader
+            id="founders-heading"
+            eyebrow="Founding team"
+            title={
+              <>
+                Who&apos;s <Highlight>building it</Highlight>
+              </>
+            }
+          />
+          <FounderCards />
         </div>
       </section>
 
-      <section className="bg-[#0e2c54] py-20">
-        <Reveal className="mx-auto max-w-5xl px-6 text-center">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#8cc0ec]">
-            Current round
-          </p>
-          <p className="mt-4 text-5xl font-semibold text-white md:text-6xl">
-            Seed · ₹5 Cr
-          </p>
-          <p className="mx-auto mt-4 max-w-xl text-base text-white/70">
-            Use of funds, milestones and traction are covered in the deck.
-          </p>
-          <div className="mt-8 flex justify-center">
-            <PillLink
-              href={deckHref}
-              className="bg-white text-[#0e2c54] hover:bg-white/90"
-            >
-              Request the deck
-            </PillLink>
-          </div>
-        </Reveal>
+      {/* Current round */}
+      <section
+        aria-labelledby="round-heading"
+        className="relative overflow-hidden bg-niti-ink py-16 lg:py-[72px]"
+      >
+        <Decor
+          src="/landing/cta-swirl-left.svg"
+          className="mix-blend-screen"
+          style={{ left: "-6%", top: "-30%", width: "34%" }}
+        />
+        <Decor
+          src="/landing/cta-swirl-right.svg"
+          className="mix-blend-screen"
+          style={{ left: "72%", top: "-20%", width: "38%" }}
+        />
+        <div
+          className={`${sectionClass} relative flex flex-col items-center gap-6 text-center`}
+        >
+          <SectionHeader
+            id="round-heading"
+            tone="dark"
+            align="center"
+            eyebrow="Current round"
+            title={
+              <>
+                Seed · <Highlight>₹5 Cr</Highlight>
+              </>
+            }
+            description="Use of funds, milestones and traction are covered in the deck."
+          />
+          <ButtonLink href={deckHref} variant="white">
+            Request the deck
+          </ButtonLink>
+        </div>
       </section>
 
-      <section className="bg-white py-24">
-        <div className="mx-auto max-w-6xl px-6">
-          <SectionHeading eyebrow="Partnerships" title="Partner with us" />
-          <div className="mt-14 grid gap-5 md:grid-cols-3">
-            {partnerTypes.map((p, i) => (
-              <Reveal key={p.title} delay={i * 0.06}>
-                <InfoCard title={p.title}>{p.description}</InfoCard>
-              </Reveal>
+      <section aria-labelledby="partners-heading" className={sectionClass}>
+        <div className="flex flex-col gap-10">
+          <SectionHeader
+            id="partners-heading"
+            eyebrow="Partnerships"
+            title={
+              <>
+                Partner <Highlight>with us</Highlight>
+              </>
+            }
+          />
+          <div className="grid gap-4 md:grid-cols-3 lg:gap-5">
+            {partnerTypes.map((p) => (
+              <FeatureCard
+                key={p.title}
+                icon={partnerIcons[p.title] ?? fallbackIcon}
+                title={p.title}
+              >
+                {p.description}
+              </FeatureCard>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-white/70 px-6 py-24 text-center">
-        <Reveal>
-          <h2 className="text-3xl font-semibold text-[#0e2c54] md:text-4xl">
-            Let&apos;s talk.
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl text-lg text-[#52627a]">
+      <CtaBand
+        id="investors-cta-heading"
+        title={
+          <>
+            <span>Let&apos;s</span>{" "}
+            <Highlight className="px-2.5 text-niti-deep">talk.</Highlight>
+          </>
+        }
+        description={
+          <>
             Reach the founders directly for the deck, intros or partnership
             conversations.
-          </p>
-          <div className="mt-8 flex justify-center">
-            <PillLink href={`mailto:${FOUNDER_EMAIL}`}>Email the founders</PillLink>
-          </div>
-          <p className="mt-4 text-xs text-[#52627a]/70">{FOUNDER_EMAIL}</p>
-        </Reveal>
-      </section>
+            <span className="mt-2 block text-sm text-white/70">
+              {FOUNDER_EMAIL}
+            </span>
+          </>
+        }
+        actions={
+          <ButtonLink href={founderHref} variant="white">
+            Email the founders
+          </ButtonLink>
+        }
+      />
     </div>
   );
 }

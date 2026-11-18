@@ -1,134 +1,247 @@
 import type { Metadata } from "next";
-import { Navbar } from "@/components/sections/navbar";
-import { PageHero } from "@/components/sections/page-hero";
-import { Capabilities } from "@/components/sections/capabilities";
-import { Explainability } from "@/components/sections/explainability";
-import { Cta } from "@/components/sections/cta";
-import { Footer } from "@/components/sections/footer";
-import { InfoCard } from "@/components/ui/info-card";
-import { PillLink } from "@/components/ui/pill-link";
-import { Reveal } from "@/components/ui/reveal";
-import { SectionHeading } from "@/components/ui/section-heading";
+import { History, Scale, ShieldCheck, UserCheck, type LucideIcon } from "lucide-react";
+import {
+  Band,
+  ButtonLink,
+  CtaBand,
+  FeatureCard,
+  Highlight,
+  PageHero,
+  SectionHeader,
+  StepCard,
+} from "@/components/brand";
 import {
   autonomyLayers,
+  capabilities,
   complianceItems,
+  decisionChain,
   placementSteps,
-  DEMO_HREF,
 } from "@/lib/site-content";
+import { CONTACT_HREF, DEMO_HREF } from "@/lib/site-links";
 
 export const metadata: Metadata = {
-  title: "Platform — NitiCover",
+  title: "Platform - NitiCover",
   description:
-    "One workflow from first client conversation to bound policy — structured data, agent-run follow-ups and a decision trail at every step.",
+    "One workflow from first client conversation to bound policy: structured data, agent-run follow-ups and a decision trail at every step.",
 };
 
+// Light, mid and strong review tones for the autonomy layers.
 const reviewTone = [
-  "bg-[#f4f7fb] text-[#52627a]",
-  "bg-[#eaf2fb] text-[#3087d0]",
-  "bg-[#0e2c54] text-white",
+  "bg-niti-mist text-niti-slate",
+  "bg-niti-lavender text-niti-violet",
+  "bg-niti-teal text-white",
 ];
+
+const complianceIcons: Record<string, LucideIcon> = {
+  "Complete decision history": History,
+  "Role-based control": UserCheck,
+  "Regulatory architecture": Scale,
+};
+const fallbackIcon = ShieldCheck;
+
+const sectionClass = "mx-auto w-full max-w-[1280px] px-4 sm:px-8 lg:px-[72px]";
 
 export default function PlatformPage() {
   return (
-    <div className="flex flex-1 flex-col">
-      <Navbar />
+    <div className="flex flex-1 flex-col gap-[clamp(40px,5.6vw,72px)] bg-white pb-[clamp(40px,5.6vw,72px)]">
       <PageHero
         eyebrow="Platform"
-        title="AI-assisted. Explainable. Human where it matters."
-        description="One workflow from first client conversation to bound policy — with structured data, agent-run follow-ups and a decision trail at every step."
+        title={
+          <>
+            <Highlight>AI-assisted.</Highlight> Explainable. Human where it matters.
+          </>
+        }
+        description="One workflow from first client conversation to bound policy, with structured data, agent-run follow-ups and a decision trail at every step."
         actions={
           <>
-            <PillLink href={DEMO_HREF}>Book a demo</PillLink>
-            <PillLink href="#how-it-works" variant="outline">
+            <ButtonLink href={DEMO_HREF} variant="lime">
+              Book a demo
+            </ButtonLink>
+            <ButtonLink href="#how-it-works" variant="outline-light">
               See how it works
-            </PillLink>
+            </ButtonLink>
           </>
         }
       />
 
       {/* How a placement runs */}
-      <section id="how-it-works" className="scroll-mt-24 bg-[#f4f7fb] py-24">
-        <div className="mx-auto max-w-6xl px-6">
-          <SectionHeading
+      <section
+        id="how-it-works"
+        aria-labelledby="how-it-works-heading"
+        className={`${sectionClass} scroll-mt-24`}
+      >
+        <div className="flex flex-col gap-10">
+          <SectionHeader
+            id="how-it-works-heading"
             eyebrow="How it works"
-            title="How a placement runs"
+            title={
+              <>
+                How a placement <Highlight>runs</Highlight>
+              </>
+            }
           />
-          <ol className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          <ol className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 lg:gap-5">
             {placementSteps.map((step, i) => (
-              <Reveal key={step.title} as="li" delay={i * 0.08}>
-                <div className="relative h-full rounded-2xl border border-black/5 bg-white p-7 shadow-sm">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#0e2c54] text-sm font-semibold text-white">
-                    {i + 1}
-                  </span>
-                  <h3 className="mt-5 text-lg font-semibold text-[#0e2c54]">
-                    {step.title}
-                  </h3>
-                  <p className="mt-2.5 text-[0.95rem] leading-relaxed text-[#52627a]">
-                    {step.description}
-                  </p>
-                </div>
-              </Reveal>
+              <li key={step.title}>
+                <StepCard index={i} title={step.title}>
+                  {step.description}
+                </StepCard>
+              </li>
             ))}
           </ol>
         </div>
       </section>
 
-      <Capabilities variant="detail" />
+      {/* Capabilities */}
+      <section aria-labelledby="capabilities-heading" className={sectionClass}>
+        <div className="flex flex-col gap-10">
+          <SectionHeader
+            id="capabilities-heading"
+            eyebrow="Capabilities"
+            title={
+              <>
+                Built for the <Highlight>work brokers</Highlight> actually do
+              </>
+            }
+            description="Six workflow capabilities, each with a defined human checkpoint before anything binds."
+          />
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-5">
+            {capabilities.map((item) => (
+              <FeatureCard key={item.title} icon={item.icon} title={item.title}>
+                {item.detail}
+              </FeatureCard>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Operating model */}
-      <section className="bg-[#f4f7fb] py-24">
-        <div className="mx-auto max-w-5xl px-6">
-          <SectionHeading
+      <Band tone="ink" labelledBy="operating-model-heading">
+        <div className="flex flex-col gap-10">
+          <SectionHeader
+            id="operating-model-heading"
+            tone="dark"
             eyebrow="Operating model"
-            title="Autonomous where possible. Human where it matters."
+            title={
+              <>
+                Autonomous where possible. <Highlight>Human where it matters.</Highlight>
+              </>
+            }
             description="The platform decides how far to go on its own by task type and risk. Routine work runs unattended; consequential decisions always wait for a person."
           />
-          <div className="mt-14 space-y-4">
+          <ul className="flex flex-col gap-4">
             {autonomyLayers.map((layer, i) => (
-              <Reveal key={layer.title} delay={i * 0.08}>
-                <div className="flex flex-col gap-4 rounded-2xl border border-black/5 bg-white p-6 shadow-sm sm:flex-row sm:items-center sm:justify-between sm:p-7">
-                  <div>
-                    <h3 className="text-lg font-semibold text-[#0e2c54]">
-                      {layer.title}
-                    </h3>
-                    <p className="mt-1.5 text-[0.95rem] text-[#52627a]">
-                      {layer.examples}
-                    </p>
-                  </div>
-                  <span
-                    className={`w-fit shrink-0 rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wider ${reviewTone[i]}`}
-                  >
-                    {layer.review}
-                  </span>
+              <li
+                key={layer.title}
+                className="flex flex-col gap-4 rounded-[20px] bg-white p-6 sm:flex-row sm:items-center sm:justify-between sm:p-7"
+              >
+                <div className="flex flex-col gap-1">
+                  <h3 className="font-headline text-xl font-semibold text-niti-ink">
+                    {layer.title}
+                  </h3>
+                  <p className="font-inter text-[15px] leading-normal text-niti-slate">
+                    {layer.examples}
+                  </p>
                 </div>
-              </Reveal>
+                <span
+                  className={`w-fit shrink-0 rounded-full px-4 py-1.5 font-headline text-xs font-semibold uppercase tracking-wider ${reviewTone[i]}`}
+                >
+                  {layer.review}
+                </span>
+              </li>
             ))}
-          </div>
+          </ul>
+        </div>
+      </Band>
+
+      {/* Explainability */}
+      <section
+        id="explainability"
+        aria-labelledby="explainability-heading"
+        className={`${sectionClass} scroll-mt-24`}
+      >
+        <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
+          <SectionHeader
+            id="explainability-heading"
+            eyebrow="Explainable by design"
+            title={
+              <>
+                Every recommendation carries its <Highlight>reasoning.</Highlight>
+              </>
+            }
+            description="From client requirement to final placement, every step is recorded (who, what, when, why, source data, modification and approval) so any question from a client, an insurer or a regulator has an answer."
+          />
+          <ol className="flex flex-col gap-3">
+            {decisionChain.map((step, i) => {
+              const isHuman = step === "Human validation";
+              return (
+                <li key={step} className="flex items-center gap-4">
+                  <span
+                    aria-hidden="true"
+                    className={`grid size-[42px] shrink-0 place-items-center rounded-full font-display text-xl font-semibold ${
+                      isHuman ? "bg-niti-violet text-white" : "bg-niti-teal text-white"
+                    }`}
+                  >
+                    {i + 1}
+                  </span>
+                  <span
+                    className={`flex-1 rounded-[20px] px-5 py-3 font-headline text-base font-semibold ${
+                      isHuman ? "bg-niti-lavender text-niti-violet" : "bg-niti-mist text-niti-ink"
+                    }`}
+                  >
+                    {step}
+                  </span>
+                </li>
+              );
+            })}
+          </ol>
         </div>
       </section>
-
-      <Explainability />
 
       {/* Compliance */}
-      <section className="bg-[#f4f7fb] py-24">
-        <div className="mx-auto max-w-6xl px-6">
-          <SectionHeading
+      <Band tone="periwinkle" labelledBy="compliance-heading">
+        <div className="flex flex-col gap-10">
+          <SectionHeader
+            id="compliance-heading"
+            tone="dark"
             eyebrow="Compliance"
-            title="Compliance and audit, built in"
-            description="Works with the tools you already use — email, document storage, insurer portals and your existing broking system."
+            title={
+              <>
+                Compliance and audit, <Highlight>built in</Highlight>
+              </>
+            }
+            description="Works with the tools you already use: email, document storage, insurer portals and your existing broking system."
           />
-          <div className="mt-14 grid gap-5 md:grid-cols-3">
-            {complianceItems.map((item, i) => (
-              <Reveal key={item.title} delay={i * 0.06}>
-                <InfoCard title={item.title}>{item.description}</InfoCard>
-              </Reveal>
+          <div className="grid gap-4 md:grid-cols-3 lg:gap-5">
+            {complianceItems.map((item) => (
+              <FeatureCard key={item.title} icon={complianceIcons[item.title] ?? fallbackIcon} title={item.title}>
+                {item.description}
+              </FeatureCard>
             ))}
           </div>
         </div>
-      </section>
+      </Band>
 
-      <Cta />
-      <Footer />
+      <CtaBand
+        id="platform-cta-heading"
+        title={
+          <>
+            <span>See a placement run</span>{" "}
+            <Highlight className="px-2.5 text-niti-deep">on NitiCover.</Highlight>
+          </>
+        }
+        description="A 30-minute walkthrough with a founder, using a risk from your own book."
+        actions={
+          <>
+            <ButtonLink href={DEMO_HREF} variant="white">
+              Book a demo
+            </ButtonLink>
+            <ButtonLink href={CONTACT_HREF} variant="outline-light">
+              Contact us
+            </ButtonLink>
+          </>
+        }
+      />
     </div>
   );
 }

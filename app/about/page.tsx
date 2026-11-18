@@ -1,75 +1,103 @@
 import type { Metadata } from "next";
-import { Eye, ShieldCheck, UserCheck } from "lucide-react";
-import { Navbar } from "@/components/sections/navbar";
-import { PageHero } from "@/components/sections/page-hero";
-import { FounderCards } from "@/components/sections/founders";
-import { Footer } from "@/components/sections/footer";
-import { InfoCard } from "@/components/ui/info-card";
-import { PillLink } from "@/components/ui/pill-link";
-import { Reveal } from "@/components/ui/reveal";
-import { SectionHeading } from "@/components/ui/section-heading";
+import { Eye, ShieldCheck, UserCheck, type LucideIcon } from "lucide-react";
+import {
+  ButtonLink,
+  CtaBand,
+  FeatureCard,
+  FounderCards,
+  Highlight,
+  PageHero,
+  SectionHeader,
+} from "@/components/brand";
 import { values } from "@/lib/site-content";
 
 export const metadata: Metadata = {
-  title: "About — NitiCover",
+  title: "About - NitiCover",
   description:
-    "NitiCover is building India's first AI-native insurance broker — software-run workflows, structured data and explainable decisions, with people accountable for the calls that matter.",
+    "NitiCover is building India's first AI-native insurance broker: software-run workflows, structured data and explainable decisions, with people accountable for the calls that matter.",
 };
 
-const valueIcons = [Eye, UserCheck, ShieldCheck];
+// The value data has no icon field, so icons are looked up by title with a
+// fallback: a newly added value still renders.
+const valueIcons: Record<string, LucideIcon> = {
+  "Explain everything": Eye,
+  "Humans stay accountable": UserCheck,
+  "Compliance is product": ShieldCheck,
+};
+const fallbackIcon: LucideIcon = ShieldCheck;
+
+const sectionClass = "mx-auto w-full max-w-[1280px] px-4 sm:px-8 lg:px-[72px]";
 
 export default function AboutPage() {
   return (
-    <div className="flex flex-1 flex-col">
-      <Navbar />
+    <div className="flex flex-1 flex-col gap-[clamp(40px,5.6vw,72px)] bg-white pb-[clamp(40px,5.6vw,72px)]">
       <PageHero
         eyebrow="About NitiCover"
-        title="Smart insurance, secure future."
-        description="We are building India's first AI-native insurance broker: a company where the workflow is software, the data is structured, and every decision is explainable — and where people stay accountable for the calls that matter."
+        title={
+          <>
+            Smart insurance, <Highlight>secure future.</Highlight>
+          </>
+        }
+        description="We are building India's first AI-native insurance broker: a company where the workflow is software, the data is structured, and every decision is explainable - and where people stay accountable for the calls that matter."
       />
 
-      <section className="bg-[#f4f7fb] py-24">
-        <div className="mx-auto max-w-5xl px-6">
-          <SectionHeading eyebrow="The team" title="Founded by builders of broking workflows" />
-          <div className="mt-14">
-            <FounderCards />
-          </div>
+      <section aria-labelledby="team-heading" className={sectionClass}>
+        <div className="flex flex-col gap-10">
+          <SectionHeader
+            id="team-heading"
+            eyebrow="The team"
+            title={
+              <>
+                Founded by <Highlight>builders of broking workflows</Highlight>
+              </>
+            }
+          />
+          <FounderCards />
         </div>
       </section>
 
-      <section className="bg-white py-24">
-        <div className="mx-auto max-w-5xl px-6">
-          <SectionHeading
+      <section aria-labelledby="values-heading" className={sectionClass}>
+        <div className="flex flex-col gap-10">
+          <SectionHeader
+            id="values-heading"
             eyebrow="Our values"
-            title="What we hold ourselves to"
+            title={
+              <>
+                What we <Highlight>hold ourselves to</Highlight>
+              </>
+            }
           />
-          <div className="mt-14 grid gap-5 md:grid-cols-3">
-            {values.map((v, i) => (
-              <Reveal key={v.title} delay={i * 0.06}>
-                <InfoCard icon={valueIcons[i]} title={v.title}>
-                  {v.description}
-                </InfoCard>
-              </Reveal>
+          <div className="grid gap-4 md:grid-cols-3 lg:gap-5">
+            {values.map((v) => (
+              <FeatureCard
+                key={v.title}
+                icon={valueIcons[v.title] ?? fallbackIcon}
+                title={v.title}
+              >
+                {v.description}
+              </FeatureCard>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-white/70 px-6 py-24 text-center">
-        <Reveal>
-          <h2 className="text-3xl font-semibold text-[#0e2c54] md:text-4xl">
-            Want to build this with us?
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl text-lg text-[#52627a]">
-            We&apos;re hiring across engineering and insurance operations.
-          </p>
-          <div className="mt-8 flex justify-center">
-            <PillLink href="/careers">See careers</PillLink>
-          </div>
-        </Reveal>
-      </section>
-
-      <Footer />
+      <CtaBand
+        id="about-cta-heading"
+        title={
+          <>
+            <span>Want to build</span>{" "}
+            <Highlight className="px-2.5 text-niti-deep">
+              this with us?
+            </Highlight>
+          </>
+        }
+        description="We're hiring across engineering and insurance operations."
+        actions={
+          <ButtonLink href="/careers" variant="white">
+            See careers
+          </ButtonLink>
+        }
+      />
     </div>
   );
 }

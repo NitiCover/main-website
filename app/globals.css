@@ -39,8 +39,26 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
-  --color-brand-navy: var(--brand-navy);
-  --color-brand-blue: var(--brand-blue);
+  /* NitiCover brand (Figma: Niticover / Final brand guide) */
+  --font-headline: var(--font-stack-headline);
+  --font-text: var(--font-stack-text);
+  --font-display: var(--font-parkinsans);
+  --font-inter: var(--font-inter-sans);
+  --color-niti-ink: #193133;
+  --color-niti-deep: #1b3537;
+  --color-niti-teal: #014d43;
+  --color-niti-lime: #d0ff71;
+  --color-niti-lime-ink: #093214;
+  --color-niti-mint: #27eaa6;
+  --color-niti-violet: #6f73db;
+  --color-niti-periwinkle: #8f93ff;
+  --color-niti-lilac: #a7abff;
+  --color-niti-lavender: #e5e5ff;
+  --color-niti-mist: #f1f4fa;
+  --color-niti-cloud: #eeeeee;
+  --color-niti-slate: #56657a;
+  --color-niti-steel: #6c84a3;
+  --color-niti-stone: #676d69;
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -51,28 +69,24 @@
 }
 
 :root {
-  /* NitiCover brand colors, sampled from the logo */
-  --brand-navy: #0e2c54;
-  --brand-blue: #3087d0;
-
   --background: oklch(1 0 0);
-  --foreground: #0e2c54;
+  --foreground: #193133;
   --card: oklch(1 0 0);
-  --card-foreground: #0e2c54;
+  --card-foreground: #193133;
   --popover: oklch(1 0 0);
-  --popover-foreground: #0e2c54;
-  --primary: #0e2c54;
+  --popover-foreground: #193133;
+  --primary: #193133;
   --primary-foreground: oklch(0.985 0 0);
-  --secondary: #eaf2fb;
-  --secondary-foreground: #0e2c54;
-  --muted: #f4f7fb;
-  --muted-foreground: #52627a;
-  --accent: #eaf2fb;
-  --accent-foreground: #0e2c54;
+  --secondary: #f1f4fa;
+  --secondary-foreground: #193133;
+  --muted: #f1f4fa;
+  --muted-foreground: #56657a;
+  --accent: #f1f4fa;
+  --accent-foreground: #193133;
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
-  --ring: #3087d0;
+  --ring: #014d43;
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);

@@ -12,16 +12,11 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import type { StaticImageData } from "next/image";
+import { SITE_EMAIL } from "./site-links";
 import yashPhoto from "@/assets/yash.png";
 import arunimPhoto from "@/assets/arunim.png";
 
-export const SITE_EMAIL = "yash.sarang@niticover.com";
-export const SITE_PHONE_DISPLAY = "+91 99305 07114";
-export const SITE_PHONE_TEL = "tel:+919930507114";
 export const FOUNDER_EMAIL = SITE_EMAIL;
-export const COMPANY_NAME = "NitiCover Pvt. Ltd.";
-// No demo form yet — "Book a demo" opens an email to the founder.
-export const DEMO_HREF = `mailto:${SITE_EMAIL}?subject=NitiCover%20demo%20request`;
 export const LINKEDIN_URL = "https://in.linkedin.com/company/niticover";
 
 export type Capability = {
@@ -68,7 +63,7 @@ export const capabilities: Capability[] = [
     icon: Bot,
     title: "Workflow agents",
     summary:
-      "Follow-ups, document collection, reminders, status tracking and escalations — handled automatically.",
+      "Follow-ups, document collection, reminders, status tracking and escalations, handled automatically.",
     detail:
       "Follow-ups, document collection, reminders, renewal alerts, status tracking and escalations to a human.",
   },
@@ -140,7 +135,7 @@ export const complianceItems = [
   {
     title: "Complete decision history",
     description:
-      "Who, what, when, why, source data, modification and approval — on every placement.",
+      "Who, what, when, why, source data, modification and approval, on every placement.",
   },
   {
     title: "Role-based control",
@@ -172,7 +167,7 @@ export const brokerBenefits = [
   {
     title: "A structured book",
     description:
-      "Your placement history becomes searchable, comparable data — not a folder of PDFs.",
+      "Your placement history becomes searchable, comparable data, not a folder of PDFs.",
   },
 ];
 
@@ -180,7 +175,7 @@ export const insurerBenefits = [
   {
     title: "Standardised intake",
     description:
-      "Same fields, same structure, every time — less back-and-forth with brokers.",
+      "Same fields, same structure, every time, with less back-and-forth with brokers.",
   },
   {
     title: "Better-matched risks",
@@ -230,14 +225,14 @@ export const founders: Founder[] = [
     photo: yashPhoto,
     crop: { scale: 2, origin: "68% 0%" },
     role: "Founder & CEO",
-    bio: "IIT Bombay · M.S. — AI & Data Science. Leads strategy, product and business; AI and enterprise growth.",
+    bio: "IIT Bombay · M.S., AI & Data Science. Leads strategy, product and business; AI and enterprise growth.",
   },
   {
     name: "Arunim Chakraborty",
     photo: arunimPhoto,
     crop: { scale: 1.35, origin: "35% 0%" },
     role: "Co-Founder & CTO",
-    bio: "M.Tech — AI & Data Science. 1.5+ years building for insurance-broking workflows; technical consulting for broking clients.",
+    bio: "M.Tech, AI & Data Science. 1.5+ years building for insurance-broking workflows; technical consulting for broking clients.",
   },
 ];
 
@@ -260,7 +255,7 @@ export const whyJoin = [
   {
     title: "Ship into production",
     description:
-      "Your work runs on live placements with partner brokers from week one — not a sandbox.",
+      "Your work runs on live placements with partner brokers from week one, not a sandbox.",
   },
   {
     title: "Agents with accountability",

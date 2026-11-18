@@ -1,24 +1,33 @@
-import type { ReactNode } from "react";
 import type { Metadata } from "next";
-import { Building2, Landmark, Users } from "lucide-react";
-import { Navbar } from "@/components/sections/navbar";
-import { PageHero } from "@/components/sections/page-hero";
-import { Cta } from "@/components/sections/cta";
-import { Footer } from "@/components/sections/footer";
-import { InfoCard } from "@/components/ui/info-card";
-import { PillLink } from "@/components/ui/pill-link";
-import { Reveal } from "@/components/ui/reveal";
-import { SectionHeading } from "@/components/ui/section-heading";
+import type { ReactNode } from "react";
 import {
-  brokerBenefits,
-  engagementSteps,
-  SITE_EMAIL,
-  insurerBenefits,
-  DEMO_HREF,
-} from "@/lib/site-content";
+  Building2,
+  Globe,
+  Landmark,
+  LayoutList,
+  Plug,
+  RefreshCw,
+  ShieldCheck,
+  Target,
+  Timer,
+  Users,
+  type LucideIcon,
+} from "lucide-react";
+import {
+  Band,
+  ButtonLink,
+  CtaBand,
+  FeatureCard,
+  Highlight,
+  PageHero,
+  SectionHeader,
+  StepCard,
+} from "@/components/brand";
+import { brokerBenefits, engagementSteps, insurerBenefits } from "@/lib/site-content";
+import { CONTACT_HREF, DEMO_HREF, SITE_EMAIL } from "@/lib/site-links";
 
 export const metadata: Metadata = {
-  title: "Solutions — NitiCover",
+  title: "Solutions - NitiCover",
   description:
     "Brokers license NitiCover to run their book. Insurers connect to receive structured submissions and quote inside the workflow.",
 };
@@ -29,6 +38,22 @@ const jumpLinks = [
   { href: "#individuals", label: "For individuals (soon)", icon: Users },
 ];
 
+// The benefit data has no icon field, so icons are looked up by title with a
+// fallback: a newly added benefit still renders.
+const benefitIcons: Record<string, LucideIcon> = {
+  "Faster placements": Timer,
+  "Renewals that don't leak": RefreshCw,
+  "Defensible advice": ShieldCheck,
+  "A structured book": LayoutList,
+  "Standardised intake": LayoutList,
+  "Better-matched risks": Target,
+  "Quote inside the workflow": Plug,
+  "Distribution reach": Globe,
+};
+const fallbackIcon: LucideIcon = ShieldCheck;
+
+const sectionClass = "mx-auto w-full max-w-[1280px] px-4 sm:px-8 lg:px-[72px]";
+
 function Audience({
   id,
   eyebrow,
@@ -36,38 +61,31 @@ function Audience({
   description,
   benefits,
   cta,
-  tone,
 }: {
   id: string;
   eyebrow: string;
-  title: string;
+  title: ReactNode;
   description: string;
   benefits: { title: string; description: string }[];
   cta: ReactNode;
-  tone: "white" | "muted";
 }) {
   return (
-    <section
-      id={id}
-      className={`scroll-mt-24 py-24 ${tone === "muted" ? "bg-[#f4f7fb]" : "bg-white"}`}
-    >
-      <div className="mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
-        <div className="lg:sticky lg:top-32 lg:self-start">
-          <SectionHeading
-            align="left"
+    <section id={id} aria-labelledby={`${id}-heading`} className={`${sectionClass} scroll-mt-24`}>
+      <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+        <div className="flex flex-col items-start gap-8 lg:sticky lg:top-28 lg:self-start">
+          <SectionHeader
+            id={`${id}-heading`}
             eyebrow={eyebrow}
             title={title}
             description={description}
           />
-          <Reveal delay={0.1} className="mt-8">
-            {cta}
-          </Reveal>
+          {cta}
         </div>
-        <div className="grid gap-5 sm:grid-cols-2">
-          {benefits.map((b, i) => (
-            <Reveal key={b.title} delay={(i % 2) * 0.06}>
-              <InfoCard title={b.title}>{b.description}</InfoCard>
-            </Reveal>
+        <div className="grid gap-4 sm:grid-cols-2 lg:gap-5">
+          {benefits.map((b) => (
+            <FeatureCard key={b.title} icon={benefitIcons[b.title] ?? fallbackIcon} title={b.title}>
+              {b.description}
+            </FeatureCard>
           ))}
         </div>
       </div>
@@ -77,100 +95,116 @@ function Audience({
 
 export default function SolutionsPage() {
   return (
-    <div className="flex flex-1 flex-col">
-      <Navbar />
+    <div className="flex flex-1 flex-col gap-[clamp(40px,5.6vw,72px)] bg-white pb-[clamp(40px,5.6vw,72px)]">
       <PageHero
         eyebrow="Solutions"
-        title="One platform. Two sides of the placement."
+        title={
+          <>
+            One platform. <Highlight>Two sides</Highlight> of the placement.
+          </>
+        }
         description="Brokers license NitiCover to run their book. Insurers connect to receive structured submissions and quote inside the workflow."
-        actions={jumpLinks.map(({ href, label, icon: Icon }) => (
-          <a
-            key={href}
-            href={href}
-            className="inline-flex min-h-11 items-center gap-2 rounded-full border border-[#0e2c54]/15 bg-white/80 px-5 text-sm font-medium text-[#0e2c54] shadow-xs transition-[background-color,transform] duration-200 hover:scale-[1.02] hover:bg-white"
-          >
-            <Icon className="size-4 text-[#3087d0]" />
+        actions={jumpLinks.map(({ href, label, icon: Icon }, i) => (
+          <ButtonLink key={href} href={href} variant={i === 0 ? "lime" : "outline-light"}>
+            <Icon aria-hidden="true" className="mr-2 size-5" />
             {label}
-          </a>
+          </ButtonLink>
         ))}
       />
 
       <Audience
         id="brokers"
         eyebrow="For brokers"
-        title="Your brand, your people, our workflow engine."
-        description="License the platform for your team. Every placement runs through structured intake, automated submissions and clause-level comparison — and your authorised staff make the calls."
+        title={
+          <>
+            Your brand, your people, <Highlight>our workflow engine.</Highlight>
+          </>
+        }
+        description="License the platform for your team. Every placement runs through structured intake, automated submissions and clause-level comparison, and your authorised staff make the calls."
         benefits={brokerBenefits}
-        cta={<PillLink href={DEMO_HREF}>Book a broker demo</PillLink>}
-        tone="muted"
+        cta={<ButtonLink href={DEMO_HREF}>Book a broker demo</ButtonLink>}
       />
 
       <Audience
         id="insurers"
         eyebrow="For insurers"
-        title="Complete submissions. Cleaner risk. Faster quotes."
+        title={
+          <>
+            Complete submissions. Cleaner risk. <Highlight>Faster quotes.</Highlight>
+          </>
+        }
         description="Partner insurers receive standardised, structured dossiers from every NitiCover broker, and can plug quoting directly into the workflow."
         benefits={insurerBenefits}
         cta={
-          <PillLink
-            href={`mailto:${SITE_EMAIL}?subject=NitiCover%20insurer%20partnership`}
-          >
+          <ButtonLink href={`mailto:${SITE_EMAIL}?subject=NitiCover%20insurer%20partnership`}>
             Talk to us about a partnership
-          </PillLink>
+          </ButtonLink>
         }
-        tone="white"
       />
 
       {/* Individuals */}
-      <section id="individuals" className="scroll-mt-24 bg-[#0e2c54] py-16">
-        <Reveal className="mx-auto flex max-w-5xl flex-col items-start justify-between gap-6 px-6 md:flex-row md:items-center">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#8cc0ec]">
-              Individuals &amp; families
-            </p>
-            <p className="mt-3 max-w-xl text-xl font-semibold text-white md:text-2xl">
-              Buying insurance for yourself? We&apos;re opening soon.
-            </p>
-          </div>
-          <PillLink
-            href="/waitlist"
-            className="bg-white text-[#0e2c54] hover:bg-white/90"
-          >
+      <Band tone="ink" id="individuals" labelledBy="individuals-heading" className="scroll-mt-24">
+        <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
+          <SectionHeader
+            id="individuals-heading"
+            tone="dark"
+            eyebrow="Individuals & families"
+            title={
+              <>
+                Buying insurance for yourself? <Highlight>We&apos;re opening soon.</Highlight>
+              </>
+            }
+          />
+          <ButtonLink href="/waitlist" variant="lime">
             Join the waitlist
-          </PillLink>
-        </Reveal>
-      </section>
+          </ButtonLink>
+        </div>
+      </Band>
 
       {/* Engagement model */}
-      <section className="bg-white py-24">
-        <div className="mx-auto max-w-6xl px-6">
-          <SectionHeading
+      <section aria-labelledby="engagement-heading" className={sectionClass}>
+        <div className="flex flex-col gap-10">
+          <SectionHeader
+            id="engagement-heading"
             eyebrow="How we work with you"
-            title="From pilot to your whole book"
+            title={
+              <>
+                From pilot to <Highlight>your whole book</Highlight>
+              </>
+            }
           />
-          <ol className="mt-14 grid gap-5 md:grid-cols-3">
+          <ol className="grid gap-4 md:grid-cols-3 lg:gap-5">
             {engagementSteps.map((step, i) => (
-              <Reveal key={step.title} as="li" delay={i * 0.08}>
-                <InfoCard
-                  title={
-                    <>
-                      <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.2em] text-[#3087d0]">
-                        Step {i + 1}
-                      </span>
-                      {step.title}
-                    </>
-                  }
-                >
+              <li key={step.title}>
+                <StepCard index={i} title={step.title}>
                   {step.description}
-                </InfoCard>
-              </Reveal>
+                </StepCard>
+              </li>
             ))}
           </ol>
         </div>
       </section>
 
-      <Cta />
-      <Footer />
+      <CtaBand
+        id="solutions-cta-heading"
+        title={
+          <>
+            <span>See a placement run</span>{" "}
+            <Highlight className="px-2.5 text-niti-deep">on NitiCover.</Highlight>
+          </>
+        }
+        description="A 30-minute walkthrough with a founder, using a risk from your own book."
+        actions={
+          <>
+            <ButtonLink href={DEMO_HREF} variant="white">
+              Book a demo
+            </ButtonLink>
+            <ButtonLink href={CONTACT_HREF} variant="outline-light">
+              Contact us
+            </ButtonLink>
+          </>
+        }
+      />
     </div>
   );
 }

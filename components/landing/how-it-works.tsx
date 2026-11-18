@@ -51,7 +51,7 @@ export function HowItWorks() {
               >
                 <span
                   aria-hidden="true"
-                  className="grid size-[42px] place-items-center rounded-full bg-niti-teal font-display text-xl font-semibold text-[#fafafa]"
+                  className="grid size-[42px] place-items-center rounded-full bg-niti-teal font-display text-xl font-semibold text-white"
                 >
                   {i + 1}
                 </span>

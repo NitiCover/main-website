@@ -47,7 +47,7 @@ export function SiteFooter() {
             <br />
             insurance broking end-to-end.
             <br />
-            IRDAI Broker Licence No. — to be added
+            IRDAI Broker Licence No.: to be added
           </p>
         </div>
 

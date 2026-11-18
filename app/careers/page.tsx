@@ -92,12 +92,10 @@ export default function CareersPage() {
           />
           <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
             {hiringSteps.map((step, i) => (
-              <li key={step.title} className="flex">
-                <div className="flex-1 [&>div]:h-full">
-                  <StepCard index={i} title={step.title}>
-                    {step.description}
-                  </StepCard>
-                </div>
+              <li key={step.title}>
+                <StepCard index={i} title={step.title}>
+                  {step.description}
+                </StepCard>
               </li>
             ))}
           </ol>

@@ -71,12 +71,10 @@ export default function PlatformPage() {
           />
           <ol className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 lg:gap-5">
             {placementSteps.map((step, i) => (
-              <li key={step.title} className="flex">
-                <div className="flex-1 [&>div]:h-full">
-                  <StepCard index={i} title={step.title}>
-                    {step.description}
-                  </StepCard>
-                </div>
+              <li key={step.title}>
+                <StepCard index={i} title={step.title}>
+                  {step.description}
+                </StepCard>
               </li>
             ))}
           </ol>
@@ -170,7 +168,7 @@ export default function PlatformPage() {
                   <span
                     aria-hidden="true"
                     className={`grid size-[42px] shrink-0 place-items-center rounded-full font-display text-xl font-semibold ${
-                      isHuman ? "bg-niti-violet text-white" : "bg-niti-teal text-[#fafafa]"
+                      isHuman ? "bg-niti-violet text-white" : "bg-niti-teal text-white"
                     }`}
                   >
                     {i + 1}

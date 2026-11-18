@@ -179,12 +179,10 @@ export default function SolutionsPage() {
           />
           <ol className="grid gap-4 md:grid-cols-3 lg:gap-5">
             {engagementSteps.map((step, i) => (
-              <li key={step.title} className="flex">
-                <div className="flex-1 [&>div]:h-full">
-                  <StepCard index={i} title={step.title}>
-                    {step.description}
-                  </StepCard>
-                </div>
+              <li key={step.title}>
+                <StepCard index={i} title={step.title}>
+                  {step.description}
+                </StepCard>
               </li>
             ))}
           </ol>

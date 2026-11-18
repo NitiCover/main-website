@@ -133,7 +133,7 @@ function OfferArtwork() {
                 </div>
                 {best && (
                   <p className="font-text leading-[1.4] text-white/85" style={{ fontSize: u(12.5) }}>
-                    Recommended — covers stock in transit, lowest deductible for textile units.
+                    Recommended: covers stock in transit, lowest deductible for textile units.
                   </p>
                 )}
               </div>

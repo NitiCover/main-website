@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it } from "vitest";
 
 import {
   FOUNDER_EMAIL,
@@ -10,15 +10,6 @@ import {
 } from "@/lib/site-content";
 
 import InvestorsPage from "./page";
-
-// Static image imports resolve to plain strings under vitest, so next/image
-// cannot build its blur placeholder. Render a plain img instead.
-vi.mock("next/image", () => ({
-  default: ({ src, alt }: { src: string; alt: string }) => (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img src={typeof src === "string" ? src : ""} alt={alt} />
-  ),
-}));
 
 describe("Investors page", () => {
   it("renders exactly one h1", () => {

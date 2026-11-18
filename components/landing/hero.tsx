@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { DEMO_HREF } from "@/lib/site-links";
 
+import { ButtonLink } from "@/components/brand/button-link";
 import { Decor, Highlight, pct } from "@/components/brand/primitives";
 
 // Figma frame 199:89 is 1219 x 691; decor offsets below are % of that box.
@@ -59,12 +60,9 @@ export function Hero() {
           </div>
 
           <div className="flex flex-wrap items-center gap-4 sm:gap-[27px]">
-            <Link
-              href={DEMO_HREF}
-              className="inline-flex h-12 items-center rounded-3xl bg-niti-lime px-5 font-text text-xl text-niti-ink transition-transform hover:-translate-y-0.5"
-            >
+            <ButtonLink href={DEMO_HREF} variant="lime">
               Book a Demo
-            </Link>
+            </ButtonLink>
             <Link
               href="#how-it-works"
               className="inline-flex h-12 items-center rounded-3xl border-2 border-white px-5 font-text text-xl text-white transition-colors hover:bg-white hover:text-niti-ink"

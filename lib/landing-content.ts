@@ -105,7 +105,7 @@ export const platformPromises = [
   {
     icon: "↻",
     title: "Automatic reminders",
-    body: "Calls and messages before renewals, payments or missing documents — nothing slips through the cracks.",
+    body: "Calls and messages before renewals, payments or missing documents, so nothing slips through the cracks.",
   },
   {
     icon: "✓",

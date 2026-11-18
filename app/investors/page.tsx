@@ -81,12 +81,10 @@ export default function InvestorsPage() {
           />
           <ol className="grid gap-4 md:grid-cols-3 lg:gap-5">
             {investorThesis.map((item, i) => (
-              <li key={item.title} className="flex">
-                <div className="flex-1 [&>div]:h-full">
-                  <StepCard index={i} title={item.title}>
-                    {item.description}
-                  </StepCard>
-                </div>
+              <li key={item.title}>
+                <StepCard index={i} title={item.title}>
+                  {item.description}
+                </StepCard>
               </li>
             ))}
           </ol>

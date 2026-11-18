@@ -1,21 +1,25 @@
 import type { LucideIcon } from "lucide-react";
 import type { ReactNode } from "react";
 
+import { cn } from "@/lib/utils";
+
 /** Numbered card from the home "How it works" section. `index` is 0-based. */
 export function StepCard({
   index,
   title,
   children,
+  className,
 }: {
   index: number;
   title: ReactNode;
   children: ReactNode;
+  className?: string;
 }) {
   return (
-    <div className="flex flex-col gap-6 rounded-[32px] bg-niti-cloud px-8 py-10">
+    <div className={cn("flex h-full flex-col gap-6 rounded-[32px] bg-niti-cloud px-8 py-10", className)}>
       <span
         aria-hidden="true"
-        className="grid size-[42px] place-items-center rounded-full bg-niti-teal font-display text-xl font-semibold text-[#fafafa]"
+        className="grid size-[42px] place-items-center rounded-full bg-niti-teal font-display text-xl font-semibold text-white"
       >
         {index + 1}
       </span>
@@ -23,7 +27,7 @@ export function StepCard({
         <h3 className="font-headline text-[clamp(1.5rem,1.1rem+1.2vw,2rem)] leading-[1.25] font-semibold text-niti-ink">
           {title}
         </h3>
-        <p className="font-text text-base leading-normal font-medium text-niti-stone">{children}</p>
+        <div className="font-text text-base leading-normal font-medium text-niti-stone">{children}</div>
       </div>
     </div>
   );
@@ -34,13 +38,15 @@ export function FeatureCard({
   icon: Icon,
   title,
   children,
+  className,
 }: {
   icon: LucideIcon;
   title: ReactNode;
   children: ReactNode;
+  className?: string;
 }) {
   return (
-    <div className="flex items-start gap-4 rounded-[20px] bg-niti-mist p-5">
+    <div className={cn("flex items-start gap-4 rounded-[20px] bg-niti-mist p-5", className)}>
       <span
         aria-hidden="true"
         className="grid size-11 shrink-0 place-items-center rounded-full bg-niti-teal text-white"
@@ -51,7 +57,7 @@ export function FeatureCard({
         <h3 className="font-headline text-xl font-semibold tracking-[-0.01em] text-niti-ink">
           {title}
         </h3>
-        <p className="font-inter text-[15px] leading-normal text-niti-slate">{children}</p>
+        <div className="font-inter text-[15px] leading-normal text-niti-slate">{children}</div>
       </div>
     </div>
   );

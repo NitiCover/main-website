@@ -1,7 +1,4 @@
 // Single source of truth for site-wide links (nav, footer, calls to action).
-// SITE_EMAIL lives here, not in site-content.ts, because the demo link is built
-// from it and site-content.ts re-exports both: defining it there would make
-// the two modules import each other.
 
 export const SITE_EMAIL = "yash.sarang@niticover.com";
 

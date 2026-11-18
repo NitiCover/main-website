@@ -4,9 +4,9 @@ import { describe, expect, it } from "vitest";
 import {
   hiringSteps,
   LINKEDIN_URL,
-  SITE_EMAIL,
   whyJoin,
 } from "@/lib/site-content";
+import { SITE_EMAIL } from "@/lib/site-links";
 
 import CareersPage from "./page";
 

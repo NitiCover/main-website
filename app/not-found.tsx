@@ -1,5 +1,10 @@
+import type { Metadata } from "next";
 import { ButtonLink, Highlight, PageHero } from "@/components/brand";
 import { DEMO_HREF } from "@/lib/site-links";
+
+export const metadata: Metadata = {
+  title: "Page not found - NitiCover",
+};
 
 export default function NotFound() {
   return (

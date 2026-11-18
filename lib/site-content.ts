@@ -16,12 +16,7 @@ import { SITE_EMAIL } from "./site-links";
 import yashPhoto from "@/assets/yash.png";
 import arunimPhoto from "@/assets/arunim.png";
 
-// SITE_EMAIL and DEMO_HREF live in site-links (single source for links).
-export { DEMO_HREF, SITE_EMAIL } from "./site-links";
-export const SITE_PHONE_DISPLAY = "+91 99305 07114";
-export const SITE_PHONE_TEL = "tel:+919930507114";
 export const FOUNDER_EMAIL = SITE_EMAIL;
-export const COMPANY_NAME = "NitiCover Pvt. Ltd.";
 export const LINKEDIN_URL = "https://in.linkedin.com/company/niticover";
 
 export type Capability = {

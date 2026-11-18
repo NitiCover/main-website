@@ -1,5 +1,5 @@
 import { ButtonLink, CtaBand, Highlight } from "@/components/brand";
-import { DEMO_HREF } from "@/lib/site-links";
+import { CONTACT_HREF, DEMO_HREF } from "@/lib/site-links";
 
 export function ClosingCta() {
   return (
@@ -25,7 +25,7 @@ export function ClosingCta() {
             Book a demo
           </ButtonLink>
           <ButtonLink
-            href={DEMO_HREF}
+            href={CONTACT_HREF}
             variant="outline-light"
             className="h-auto border px-[22px] py-3 text-[19px] hover:text-niti-deep"
           >

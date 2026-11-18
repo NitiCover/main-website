@@ -12,9 +12,9 @@ import {
 import {
   hiringSteps,
   LINKEDIN_URL,
-  SITE_EMAIL,
   whyJoin,
 } from "@/lib/site-content";
+import { SITE_EMAIL } from "@/lib/site-links";
 
 export const metadata: Metadata = {
   title: "Careers - NitiCover",

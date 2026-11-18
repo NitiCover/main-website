@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { History, Scale, UserCheck } from "lucide-react";
+import { History, Scale, ShieldCheck, UserCheck, type LucideIcon } from "lucide-react";
 import {
+  Band,
   ButtonLink,
   CtaBand,
   FeatureCard,
@@ -31,7 +32,12 @@ const reviewTone = [
   "bg-niti-teal text-white",
 ];
 
-const complianceIcons = [History, UserCheck, Scale];
+const complianceIcons: Record<string, LucideIcon> = {
+  "Complete decision history": History,
+  "Role-based control": UserCheck,
+  "Regulatory architecture": Scale,
+};
+const fallbackIcon = ShieldCheck;
 
 const sectionClass = "mx-auto w-full max-w-[1280px] px-4 sm:px-8 lg:px-[72px]";
 
@@ -59,9 +65,14 @@ export default function PlatformPage() {
       />
 
       {/* How a placement runs */}
-      <section id="how-it-works" className={`${sectionClass} scroll-mt-24`}>
+      <section
+        id="how-it-works"
+        aria-labelledby="how-it-works-heading"
+        className={`${sectionClass} scroll-mt-24`}
+      >
         <div className="flex flex-col gap-10">
           <SectionHeader
+            id="how-it-works-heading"
             eyebrow="How it works"
             title={
               <>
@@ -105,8 +116,8 @@ export default function PlatformPage() {
       </section>
 
       {/* Operating model */}
-      <section aria-labelledby="operating-model-heading" className="bg-niti-ink py-16 lg:py-[72px]">
-        <div className={`${sectionClass} flex flex-col gap-10`}>
+      <Band tone="ink" labelledBy="operating-model-heading">
+        <div className="flex flex-col gap-10">
           <SectionHeader
             id="operating-model-heading"
             tone="dark"
@@ -141,7 +152,7 @@ export default function PlatformPage() {
             ))}
           </ul>
         </div>
-      </section>
+      </Band>
 
       {/* Explainability */}
       <section
@@ -188,8 +199,8 @@ export default function PlatformPage() {
       </section>
 
       {/* Compliance */}
-      <section aria-labelledby="compliance-heading" className="bg-niti-periwinkle py-16 lg:py-[72px]">
-        <div className={`${sectionClass} flex flex-col gap-10`}>
+      <Band tone="periwinkle" labelledBy="compliance-heading">
+        <div className="flex flex-col gap-10">
           <SectionHeader
             id="compliance-heading"
             tone="dark"
@@ -202,14 +213,14 @@ export default function PlatformPage() {
             description="Works with the tools you already use: email, document storage, insurer portals and your existing broking system."
           />
           <div className="grid gap-4 md:grid-cols-3 lg:gap-5">
-            {complianceItems.map((item, i) => (
-              <FeatureCard key={item.title} icon={complianceIcons[i]} title={item.title}>
+            {complianceItems.map((item) => (
+              <FeatureCard key={item.title} icon={complianceIcons[item.title] ?? fallbackIcon} title={item.title}>
                 {item.description}
               </FeatureCard>
             ))}
           </div>
         </div>
-      </section>
+      </Band>
 
       <CtaBand
         id="platform-cta-heading"

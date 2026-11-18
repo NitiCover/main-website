@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import {
   Building2,
   Globe,
@@ -13,6 +14,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import {
+  Band,
   ButtonLink,
   CtaBand,
   FeatureCard,
@@ -62,10 +64,10 @@ function Audience({
 }: {
   id: string;
   eyebrow: string;
-  title: React.ReactNode;
+  title: ReactNode;
   description: string;
   benefits: { title: string; description: string }[];
-  cta: React.ReactNode;
+  cta: ReactNode;
 }) {
   return (
     <section id={id} aria-labelledby={`${id}-heading`} className={`${sectionClass} scroll-mt-24`}>
@@ -141,14 +143,8 @@ export default function SolutionsPage() {
       />
 
       {/* Individuals */}
-      <section
-        id="individuals"
-        aria-labelledby="individuals-heading"
-        className="scroll-mt-24 bg-niti-ink py-16 lg:py-[72px]"
-      >
-        <div
-          className={`${sectionClass} flex flex-col items-start justify-between gap-8 md:flex-row md:items-center`}
-        >
+      <Band tone="ink" id="individuals" labelledBy="individuals-heading" className="scroll-mt-24">
+        <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
           <SectionHeader
             id="individuals-heading"
             tone="dark"
@@ -163,7 +159,7 @@ export default function SolutionsPage() {
             Join the waitlist
           </ButtonLink>
         </div>
-      </section>
+      </Band>
 
       {/* Engagement model */}
       <section aria-labelledby="engagement-heading" className={sectionClass}>

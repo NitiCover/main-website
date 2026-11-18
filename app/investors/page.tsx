@@ -7,6 +7,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import {
+  Band,
   ButtonLink,
   CtaBand,
   Decor,
@@ -136,10 +137,7 @@ export default function InvestorsPage() {
       </section>
 
       {/* Current round */}
-      <section
-        aria-labelledby="round-heading"
-        className="relative overflow-hidden bg-niti-ink py-16 lg:py-[72px]"
-      >
+      <Band tone="ink" labelledBy="round-heading">
         <Decor
           src="/landing/cta-swirl-left.svg"
           className="mix-blend-screen"
@@ -150,9 +148,7 @@ export default function InvestorsPage() {
           className="mix-blend-screen"
           style={{ left: "72%", top: "-20%", width: "38%" }}
         />
-        <div
-          className={`${sectionClass} relative flex flex-col items-center gap-6 text-center`}
-        >
+        <div className="relative flex flex-col items-center gap-6 text-center">
           <SectionHeader
             id="round-heading"
             tone="dark"
@@ -169,7 +165,7 @@ export default function InvestorsPage() {
             Request the deck
           </ButtonLink>
         </div>
-      </section>
+      </Band>
 
       <section aria-labelledby="partners-heading" className={sectionClass}>
         <div className="flex flex-col gap-10">

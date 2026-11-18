@@ -16,6 +16,16 @@ const variants: Record<ButtonVariant, string> = {
     "border-2 border-niti-teal text-niti-teal hover:bg-niti-teal hover:text-white",
 };
 
+// Focus ring colour per variant, by the surface the variant is designed for.
+// Lime is ~1.2:1 on white, so light-surface variants use teal (WCAG 1.4.11).
+const focusRing: Record<ButtonVariant, string> = {
+  teal: "focus-visible:outline-niti-teal",
+  "outline-dark": "focus-visible:outline-niti-teal",
+  lime: "focus-visible:outline-niti-lime",
+  white: "focus-visible:outline-niti-lime",
+  "outline-light": "focus-visible:outline-niti-lime",
+};
+
 const sizes: Record<ButtonSize, string> = {
   md: "h-12 px-5 text-lg",
   sm: "px-[18px] py-[9px] text-lg leading-none",
@@ -39,7 +49,8 @@ export function ButtonLink({
   className?: string;
 }) {
   const classes = cn(
-    "inline-flex items-center justify-center rounded-full font-headline font-medium whitespace-nowrap transition duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-niti-lime",
+    "inline-flex items-center justify-center rounded-full font-headline font-medium whitespace-nowrap transition duration-200 focus-visible:outline-2 focus-visible:outline-offset-2",
+    focusRing[variant],
     variants[variant],
     sizes[size],
     className,

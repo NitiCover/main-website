@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
-import { founders } from "@/lib/site-content";
+import { founders, LINKEDIN_URL } from "@/lib/site-content";
 
 import { FounderCards } from "./founder-cards";
 
@@ -20,6 +20,16 @@ describe("FounderCards", () => {
       const img = screen.getByRole("img", { name });
       expect(img.style.transform).toBe(`scale(${crop.scale})`);
       expect(img.style.transformOrigin).toBe(crop.origin);
+    }
+  });
+
+  it("labels each LinkedIn link as the company page and opens it in a new tab", () => {
+    render(<FounderCards />);
+    const links = screen.getAllByRole("link", { name: "NitiCover on LinkedIn" });
+    expect(links).toHaveLength(founders.length);
+    for (const link of links) {
+      expect(link).toHaveAttribute("href", LINKEDIN_URL);
+      expect(link).toHaveAttribute("target", "_blank");
     }
   });
 });

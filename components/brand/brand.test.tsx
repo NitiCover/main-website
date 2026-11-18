@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { Shield } from "lucide-react";
 import { describe, expect, test } from "vitest";
 
-import { ButtonLink, CtaBand, FeatureCard, PageHero, SectionHeader, StepCard } from "./index";
+import { Band, ButtonLink, CtaBand, FeatureCard, PageHero, SectionHeader, StepCard } from "./index";
 
 describe("ButtonLink", () => {
   test("renders a link to an internal path", () => {
@@ -30,6 +30,50 @@ describe("ButtonLink", () => {
     expect(link).toHaveAttribute("href", "https://example.com");
     expect(link).toHaveAttribute("target", "_blank");
     expect(link).toHaveAttribute("rel", "noreferrer");
+  });
+});
+
+describe("ButtonLink focus ring", () => {
+  test.each(["teal", "outline-dark"] as const)(
+    "%s (light surface) uses a teal focus outline, not lime",
+    (variant) => {
+      render(<ButtonLink href="/x" variant={variant}>Go</ButtonLink>);
+      const link = screen.getByRole("link", { name: "Go" });
+      expect(link).toHaveClass("focus-visible:outline-niti-teal");
+      expect(link).not.toHaveClass("focus-visible:outline-niti-lime");
+    },
+  );
+
+  test.each(["lime", "white", "outline-light"] as const)(
+    "%s (dark surface) keeps a lime focus outline",
+    (variant) => {
+      render(<ButtonLink href="/x" variant={variant}>Go</ButtonLink>);
+      const link = screen.getByRole("link", { name: "Go" });
+      expect(link).toHaveClass("focus-visible:outline-niti-lime");
+      expect(link).not.toHaveClass("focus-visible:outline-niti-teal");
+    },
+  );
+});
+
+describe("Band", () => {
+  test("renders a labelled section with id and children, capped at 1280px", () => {
+    render(
+      <Band tone="ink" id="ops" labelledBy="ops-heading">
+        <h2 id="ops-heading">Operating</h2>
+      </Band>,
+    );
+    const section = screen.getByRole("region", { name: "Operating" });
+    expect(section).toHaveAttribute("id", "ops");
+    expect(section).toHaveClass("max-w-[1280px]", "bg-niti-ink");
+  });
+
+  test("periwinkle tone uses the periwinkle background", () => {
+    render(
+      <Band tone="periwinkle" labelledBy="h">
+        <h2 id="h">Compliance</h2>
+      </Band>,
+    );
+    expect(screen.getByRole("region", { name: "Compliance" })).toHaveClass("bg-niti-periwinkle");
   });
 });
 

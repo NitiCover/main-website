@@ -1,3 +1,4 @@
+export { Band } from "./band";
 export { ButtonLink } from "./button-link";
 export type { ButtonSize, ButtonVariant } from "./button-link";
 export { CtaBand } from "./cta-band";

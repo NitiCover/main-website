@@ -38,7 +38,8 @@ export function FounderCards() {
                 {f.bio}
               </p>
               <ButtonLink href={LINKEDIN_URL} variant="outline-dark" size="sm">
-                LinkedIn<span className="sr-only"> profile of {f.name}</span>
+                <span aria-hidden="true">LinkedIn</span>
+                <span className="sr-only">NitiCover on LinkedIn</span>
               </ButtonLink>
             </div>
           </div>

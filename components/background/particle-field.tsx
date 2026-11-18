@@ -112,7 +112,9 @@ function ParticleSwarm() {
 export function ParticleField() {
   const pathname = usePathname();
 
-  if (pathname === "/waitlist") return null;
+  // The home page and waitlist use the NitiCover brand palette, which this
+  // navy/blue swarm clashes with.
+  if (pathname === "/" || pathname === "/waitlist") return null;
 
   return (
     <div

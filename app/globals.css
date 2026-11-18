@@ -41,6 +41,26 @@
   --color-card: var(--card);
   --color-brand-navy: var(--brand-navy);
   --color-brand-blue: var(--brand-blue);
+  /* NitiCover brand (Figma: Niticover / Final brand guide) */
+  --font-headline: var(--font-stack-headline);
+  --font-text: var(--font-stack-text);
+  --font-display: var(--font-parkinsans);
+  --font-inter: var(--font-inter-sans);
+  --color-niti-ink: #193133;
+  --color-niti-deep: #1b3537;
+  --color-niti-teal: #014d43;
+  --color-niti-lime: #d0ff71;
+  --color-niti-lime-ink: #093214;
+  --color-niti-mint: #27eaa6;
+  --color-niti-violet: #6f73db;
+  --color-niti-periwinkle: #8f93ff;
+  --color-niti-lilac: #a7abff;
+  --color-niti-lavender: #e5e5ff;
+  --color-niti-mist: #f1f4fa;
+  --color-niti-cloud: #eeeeee;
+  --color-niti-slate: #56657a;
+  --color-niti-steel: #6c84a3;
+  --color-niti-stone: #676d69;
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
